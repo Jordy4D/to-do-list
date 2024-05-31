@@ -1,3 +1,5 @@
+import './style.css';
+
 class ToDoList {
     constructor(title, description, dueDate, priority, notes) {
         this.title = title;
@@ -21,6 +23,15 @@ class ToDoList {
 
 }
 
-Class Project {
-    constructor()
-}
+// class Project {
+//     // constructor()
+// }
+
+const div = document.createElement('div');
+const test = document.createElement('h1');
+
+test.textContent = "test"
+document.body.appendChild(test)
+
+console.log('test');
+
