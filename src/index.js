@@ -1,6 +1,11 @@
 import './style.css';
+// import ToDoList from './todo.js';
 
-class ToDoList {
+console.log('test')
+
+const farts = "farting"
+
+class ToDoList{
     constructor(title, description, dueDate, priority, notes) {
         this.title = title;
         this.description = description;
@@ -9,29 +14,34 @@ class ToDoList {
         this.notes = notes;
     }
     
-    getDueDate() {
-        //do stuff
-    }
+    // changeTitle(newTitle) {
+    //     this.title.textContent = newTitle;
+    // }
+    
+    // changeDescription(newDescription) {
+    //     this.description.textContent = newDescription;
+    // }
+    
+    // changeDueDate(newDueDate) {
+    //     this.dueDate.textContent = newDueDate;
+    // }
+    
+    // changePriority(newPrio) {
+    //     this.priority.textContent = newPrio;
+    // }
+    
+    // updateNotes(newNotes) {
+    //     this.notes.textContent = newNotes;
+    // }
+    
+};
 
-    getPriority() {
-        //do stuff
-    }
-
-    updateNotes() {
-        //do stuff
-    }
-
-}
+const newToDo = new ToDoList( "Test Title", "Test Description","Test Due Date","Test Prio","Test Notes");
 
 // class Project {
 //     // constructor()
 // }
 
-const div = document.createElement('div');
-const test = document.createElement('h1');
+// console.log(newToDo);
 
-test.textContent = "test"
-document.body.appendChild(test)
-
-console.log('test');
 

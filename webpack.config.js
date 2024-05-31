@@ -7,6 +7,7 @@ module.exports = {
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
+        clean: true,
   },
   module: {
     rules: [
@@ -26,9 +27,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+        template: './src/index.html',
         title: 'To-Do List',
         filename:'index.html',
         inject: 'body',
-    })
-  ]
+    }),
+  ],
 };
