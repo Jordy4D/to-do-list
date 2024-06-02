@@ -1,0 +1,1 @@
+const project = []; // projects will be an array of objects, duh!
