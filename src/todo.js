@@ -1,4 +1,6 @@
-class ToDoList{
+console.log('test')
+
+export class ToDoList{
     constructor(title, description, dueDate, priority, notes) {
         this.title = title;
         this.description = description;
@@ -8,25 +10,24 @@ class ToDoList{
     }
     
     changeTitle(newTitle) {
-        this.title.textContent = newTitle;
+        this.title = newTitle;
     }
     
     changeDescription(newDescription) {
-        this.description.textContent = newDescription;
+        this.description = newDescription;
     }
     
     changeDueDate(newDueDate) {
-        this.dueDate.textContent = newDueDate;
+        this.dueDate = newDueDate;
     }
     
     changePriority(newPrio) {
-        this.priority.textContent = newPrio;
+        this.priority = newPrio;
     }
     
     updateNotes(newNotes) {
-        this.notes.textContent = newNotes;
+        this.notes = newNotes;
     }
     
 };
 
-export default ToDoList;
