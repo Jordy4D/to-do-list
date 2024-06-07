@@ -1,24 +1,47 @@
-import { Project } from './project.js'
-import { Task } from './task.js'
-
-console.log('test To Do')
+// import { ToDo } from "./todoDELETE.js";
 
 
-export class ToDo extends Project {
-    constructor(title, description, dueDate, priority, notes) {
-        super(title, description, dueDate, priority, notes)
-        this.tasks = [];
+console.log('test To Do');
+
+
+export class ToDo {
+    constructor(title, description, dueDate, priority) {
+        this.title = title;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        // this.notes = notes;
+        // this.todos = [];
     }
     
-    newTask(name, detail) {
-        let t = new Task(name, detail)
-        this.tasks.push(t)
-        return t;
+    changeTitle(newTitle) {
+        this.title = newTitle;
     }
-
-    getTasks() {
-        console.log(this.tasks)
+    
+    changeDescription(newDescription) {
+        this.description = newDescription;
     }
+    
+    changeDueDate(newDueDate) {
+        this.dueDate = newDueDate;
+    }
+    
+    changePriority(newPrio) {
+        this.priority = newPrio;
+    }
+    
+    // updateNotes(newNotes) {
+    //     this.notes = newNotes;
+    // }
 
+    // newToDo(title, description, dueDate, priority, notes) {
+    //     let t = new ToDo(title, description, dueDate, priority, notes)
+    //     this.todos.push(t)
+    //     return t;
+    // }
 
-}
+    // getToDos() {
+    //     console.log(this.todos)
+    // }b
+    
+};

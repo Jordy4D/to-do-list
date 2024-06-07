@@ -1,47 +1,29 @@
-import { ToDo } from "./todo.js";
+import { ToDo } from './todo.js'
+// import { Task } from './task.js'
+
+console.log('test Project')
 
 
-console.log('test Project');
-
-
-export class Project{
-    constructor(title, description, dueDate, priority, notes) {
-        this.title = title;
-        this.description = description;
-        this.dueDate = dueDate;
-        this.priority = priority;
-        this.notes = notes;
-        this.todos = [];
+export class Project {
+    constructor(name) {
+        this.name = name;
+        this.tasks = [];
     }
     
-    changeTitle(newTitle) {
-        this.title = newTitle;
-    }
-    
-    changeDescription(newDescription) {
-        this.description = newDescription;
-    }
-    
-    changeDueDate(newDueDate) {
-        this.dueDate = newDueDate;
-    }
-    
-    changePriority(newPrio) {
-        this.priority = newPrio;
-    }
-    
-    updateNotes(newNotes) {
-        this.notes = newNotes;
-    }
-
-    newToDo(title, description, dueDate, priority, notes) {
-        let t = new ToDo(title, description, dueDate, priority, notes)
-        this.todos.push(t)
+    newToDo(title, description, dueDate, priority) {
+        let t = new ToDo(title, description, dueDate, priority)
+        this.tasks.push(t)
         return t;
     }
 
-    getToDos() {
-        console.log(this.todos)
+    getTasks() {
+        return this.tasks;
+        
     }
-    
-};
+
+    // deleteTask(i) {
+    //     delete ToDo.tasks[i]
+
+    // }
+
+}
