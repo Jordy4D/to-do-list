@@ -10,8 +10,7 @@ export class ToDo {
         this.description = description;
         this.dueDate = dueDate;
         this.priority = priority;
-        // this.notes = notes;
-        // this.todos = [];
+
     }
     
     changeTitle(newTitle) {
@@ -30,18 +29,5 @@ export class ToDo {
         this.priority = newPrio;
     }
     
-    // updateNotes(newNotes) {
-    //     this.notes = newNotes;
-    // }
 
-    // newToDo(title, description, dueDate, priority, notes) {
-    //     let t = new ToDo(title, description, dueDate, priority, notes)
-    //     this.todos.push(t)
-    //     return t;
-    // }
-
-    // getToDos() {
-    //     console.log(this.todos)
-    // }b
-    
 };
