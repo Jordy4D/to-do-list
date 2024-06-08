@@ -1,13 +1,21 @@
-import { deleteTask } from "./deleteTask.js";
+//pop up form for new task
 
 
-export function populateToDos(project) {
+function populateTasks(project) {
     
     const displayArea = document.querySelector(".todos");
     displayArea.innerHTML = '';
+    const tasksHeader = document.createElement('div')
+    tasksHeader.classList.add('tasks-header')
+
     const projectTitle = document.createElement('h2')
+    const addTask = document.createElement('button')
+    addTask.textContent = '+';
     projectTitle.textContent = project.name;
-    displayArea.appendChild(projectTitle)
+    
+    tasksHeader.appendChild(projectTitle)
+    tasksHeader.appendChild(addTask)
+    displayArea.appendChild(tasksHeader)
 
     const toDoTitle = document.createElement('h3')
 
@@ -59,5 +67,6 @@ export function populateToDos(project) {
     // myArticle.appendChild(myP3)
     // displayArea.appendChild(myArticle)
 
-    deleteTask(project);
 }
+
+export { populateTasks }

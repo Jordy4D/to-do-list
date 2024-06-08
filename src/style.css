@@ -72,6 +72,22 @@ header {
     grid-row: 2 / 8;
 }
 
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.tasks-header button {
+    width: 25px;
+    height: 25px;
+    /* padding: 5px; */
+    border: 1px solid black;
+    border-radius: 50%;
+}
+
 .task {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
