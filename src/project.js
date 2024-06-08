@@ -21,9 +21,4 @@ export class Project {
         
     }
 
-    // deleteTask(i) {
-    //     delete ToDo.tasks[i]
-
-    // }
-
 }

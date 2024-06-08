@@ -6,17 +6,25 @@
     <title>To-Do List</title>
 </head>
 <body>
-    <header>
-        <nav>
-            <button id="newProject" >New Project</button>
-            <button id="newToDo">New To Do</button>
-            <button>Contact</button>
-        </nav>
-    </header>
     <div class="container">
+        <header>
+            <h1 class="page-title">Your To Do Lists</h1>
+        </header>
         <div class="content">
-            <div class="todos"></div>
+            <div class="sidebar">
+                <h2 class="sidebar-header">Projects</h2>
+                <label for="new-project">Start A New Project</label>
+                <div id="project-init-field">
+                    <input id="new-project" type="text" placeholder="New Project">
+                    <input type="submit" value="+" id="new-project-init-input">
+                </div>
+                <span class="project-list"></span>
+            </div>
+            <div class="todos">
+                <h2 class="tasks">Your Tasks</h2>
+            </div>
         </div>
     </div>
+
 </body>
 </html>

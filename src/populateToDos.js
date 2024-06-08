@@ -5,27 +5,38 @@ export function populateToDos(project) {
     
     const displayArea = document.querySelector(".todos");
     displayArea.innerHTML = '';
-    const projectTitle = document.createElement('h1')
+    const projectTitle = document.createElement('h2')
     projectTitle.textContent = project.name;
+    displayArea.appendChild(projectTitle)
 
-    const toDoTitle = document.createElement('h2')
+    const toDoTitle = document.createElement('h3')
 
     //change this later
     const myArticle = document.createElement('article') 
     myArticle.appendChild(toDoTitle)
-    
+    let index = 0;
     project.getTasks().forEach(element => {
         const task = document.createElement('div')
         task.classList.add("task")
-        const myH3 = document.createElement('h3')
+        task.setAttribute("data-index", `${index}`)
+        
+        const myH4 = document.createElement('h4')
+        myH4.classList.add("task-name")
+        index++
+
         const myP1 = document.createElement('p')
+        myP1.classList.add("task-description")
+
         const myP2 = document.createElement('p')
+        myP2.classList.add("task-dueDate")
+
         const myP3 = document.createElement('p')
-        const myP4 = document.createElement('p')
+        myP3.classList.add("task-priority")
+
         const deleteBtn = document.createElement('button')
         deleteBtn.classList.add('deleteBtn')
 
-        myH3.textContent = `Name: ${element.title}`;
+        myH4.textContent = `Name: ${element.title}`;
         myP1.textContent = `Details: ${element.description}`;
         myP2.textContent = `Due: ${element.dueDate}`;
         myP3.textContent = `Priority: ${element.priority}`;
@@ -33,8 +44,8 @@ export function populateToDos(project) {
         deleteBtn.setAttribute("onclick", "deleteTask()");
 
 
-        myArticle.appendChild(task)
-        task.appendChild(myH3)
+        displayArea.appendChild(task)
+        task.appendChild(myH4)
         task.appendChild(myP1)
         task.appendChild(myP2)
         task.appendChild(myP3)
@@ -42,12 +53,11 @@ export function populateToDos(project) {
 
     });
 
-    // myArticle.appendChild(myH3)
+    // myArticle.appendChild(myH4)
     // myArticle.appendChild(myP1)
     // myArticle.appendChild(myP2)
     // myArticle.appendChild(myP3)
-    displayArea.appendChild(projectTitle)
-    displayArea.appendChild(myArticle)
+    // displayArea.appendChild(myArticle)
 
-    deleteTask();
+    deleteTask(project);
 }
