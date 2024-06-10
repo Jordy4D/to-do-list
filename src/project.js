@@ -1,3 +1,4 @@
+// import { populateTasks } from './DOMController.js';
 import { Task } from './task.js'
 // import { Task } from './task.js'
 
@@ -13,12 +14,11 @@ export class Project {
     newTask(title, description, dueDate, priority) {
         let t = new Task(title, description, dueDate, priority)
         this.tasks.push(t)
+        populateTasks(this.tasks)
         return t;
     }
 
     getTasks() {
-        return this.tasks;
-        
+        return this.tasks;   
     }
-
 }
