@@ -10,7 +10,7 @@
         <header>
             <h1 class="page-title">Your To Do Lists</h1>
         </header>
-        <div class="content">
+        <div class="content" id="content">
             <div class="sidebar">
                 <h2 class="sidebar-header"></h2>
                 <label for="new-project">Start A New Project</label>
@@ -20,8 +20,40 @@
                 </div>
                 <span class="project-list"></span>
             </div>
-            <div class="todos">
+            <div id="tasks-container">
                 <span class="tasks-title"><h2></h2></span>
+            </div>
+            <!-- Delete this form after wiring everything up correctly -->
+            <div class="api-testing-form" id="api-testing-form">
+                <h2 style="color: green;">Popup Form</h2> 
+                    <form class="form-container"> 
+                        <label class="form-label" for="name">Title</label> 
+                        <input class="form-input" type="text" placeholder="Enter Your Username" 
+                            id="name" name="name" required> 
+                        <label class="form-label" for="description">Description</label> 
+                        <input class="form-input" type="text" placeholder="Task Description"
+                            id="description" name="description" required> 
+                        <label class="form-label" for="dueDate">Due Date</label> 
+                        <input class="form-input" type="date" placeholder="Due Date" 
+                            id="dueDate" name="dueDate" required> 
+                        
+                        <label class="form-label" for="priority">Priority</label> 
+                        <input list="priority-choice" id="priority" name="priority">
+                        <datalist class="form-input" type="text" id="priority-choice" > 
+                            <option value="None"></option>
+                            <option value="Low"></option>
+                            <option value="Medium"></option>
+                            <option value="High"></option>
+                        </datalist>
+
+                        <button class="btn-submit" id="btn-submit" type="submit"> 
+                           Submit 
+                        </button> 
+                    </form> 
+  
+            <button class="btn-close-popup" id="btn-close-popup" type="close"> 
+              Close 
+              </button> 
             </div>
         </div>
     </div>
