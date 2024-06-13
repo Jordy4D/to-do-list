@@ -3,22 +3,22 @@ import { Task } from './task.js'
 
 
 function projectsController() {
-    let projectsArr = [];
+    let activeProjects = [];
     let currentProjectTasks = []
 
     const getCurrentProject = (index) => {
-        return projectsArr[index];
+        return activeProjects[index];
     }
 
     const getAllProjects = () => {
-        console.log(projectsArr)
-        return projectsArr;
+        console.log(activeProjects)
+        return activeProjects;
     }
 
     const addNewProject = (name) => {
         let p = new Project (name)
-        projectsArr.push(p)
-        console.log(projectsArr)
+        activeProjects.push(p)
+        console.log(activeProjects)
     }
 
     const getProjectTasks = () => {
@@ -39,26 +39,26 @@ function projectsController() {
 }
  
 function tasksController() {
-    let tasksArr = projectsController.currentProjectTasks
+    let currentTasks = projectsController.currentProjectTasks
 
     const changeTaskTitle = (index, newTitle) => {
-        tasksArr[index].title = newTitle;
+        currentTasks[index].title = newTitle;
     }
     
     const changeDescription = (index, newDescription) => {
-        tasksArr[index].description = newDescription;
+        currentTasks[index].description = newDescription;
     }
     
     const changeDueDate = (index, newDueDate) => {
-        tasksArr[index].dueDate = newDueDate;
+        currentTasks[index].dueDate = newDueDate;
     }
     
     const changePriority = (index, newPrio) => {
-        tasksArr[index].priority = newPrio;
+        currentTasks[index].priority = newPrio;
     }
 
     const changeComplete = (boolean) => {
-        tasksArr[index].complete = boolean
+        currentTasks[index].complete = boolean
     }
 
     return {changeTaskTitle, changeDescription, changeDueDate, changePriority, changeComplete }

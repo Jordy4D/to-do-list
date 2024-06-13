@@ -8,7 +8,7 @@
 .container {
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    /* grid-template-rows: repeat(6, 1fr); */
     min-height: 100vh;
     width: 100vw;
 }
@@ -26,12 +26,12 @@ header {
     grid-column: 1 / 13;
     display: grid;
     grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(8, 1fr);
+    /* grid-template-rows: repeat(8, 1fr); */
 
 }
 
 .sidebar {
-    grid-row: 1 / 9;
+    grid-row: 1 / 4;
     grid-column: 1 / 2;
     display: grid;
     background-color: darkgrey;
@@ -51,7 +51,7 @@ header {
 
 .todos {
     background-color: rgb(255, 133, 133);
-    grid-row: 1 / 9;
+    grid-row: 1 / 7;
     grid-column: 2 / 9;
 
     display: flex;
@@ -64,7 +64,7 @@ header {
 .tasks {
     display: grid;
     grid-column: 4 / 8;
-    grid-row: 2 / 8;
+    grid-row: 2 / 7;
 }
 
 .tasks-header {

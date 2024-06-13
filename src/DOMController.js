@@ -243,6 +243,14 @@ function DomController() {
     const newProjectName = document.getElementById('new-project') 
     const newProjectSubmit = document.getElementById('new-project-init-input')
 
+
+    newTaskSubmit.addEventListener('click', function() {
+        
+        let allTasks = projectsController.getProjectTasks()
+        let newTask = projectsController.addNewTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
+        allTasks.push(newTask)
+    })
+
     taskName.addEventListener('click', function() {
         console.log('name Button Works')
     })
