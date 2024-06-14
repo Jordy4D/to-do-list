@@ -45,6 +45,10 @@ header {
     width: 100%;
 }
 
+#project-list {
+    min-height: 200px;
+}
+
 #new-project {
     width: 75%;
 }
