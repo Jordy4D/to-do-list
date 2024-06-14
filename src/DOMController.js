@@ -141,15 +141,16 @@ function taskPopUpForm() {
 
 // }
 
-function displayTask(index, element) {
-    const taskDiv = document.createElement('div')
+function displayTask(element) {
+    const tasksDisplay = document.getElementById('tasks-display') 
+    const taskLi = document.createElement('li')
     const myH4 = document.createElement('h4')
     const myP1 = document.createElement('p')
     const myP2 = document.createElement('p')
     const myP3 = document.createElement('p')
     const deleteBtn = document.createElement('button')
     
-    taskDiv.classList.add("task")
+    taskLi.classList.add("task")
     myH4.classList.add("task-name")
     myP1.classList.add("task-description")
     myP2.classList.add("task-dueDate")
@@ -158,7 +159,7 @@ function displayTask(index, element) {
     
     
     
-    taskDiv.setAttribute("data-index", `${index}`)
+    // taskLi.setAttribute("data-index", `${index}`)
     
     
     myH4.textContent = `Name: ${element.title}`;
@@ -166,15 +167,16 @@ function displayTask(index, element) {
     myP2.textContent = `Due: ${element.dueDate}`;
     myP3.textContent = `Priority: ${element.priority}`;
     deleteBtn.textContent = `Delete`
-    deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
+    // deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
     
     
-    // displayArea.appendChild(taskDiv)
-    taskDiv.appendChild(myH4)
-    taskDiv.appendChild(myP1)
-    taskDiv.appendChild(myP2)
-    taskDiv.appendChild(myP3)
-    taskDiv.appendChild(deleteBtn)
+    // displayArea.appendChild(taskLi)
+    tasksDisplay.appendChild(taskLi)
+    taskLi.appendChild(myH4)
+    taskLi.appendChild(myP1)
+    taskLi.appendChild(myP2)
+    taskLi.appendChild(myP3)
+    taskLi.appendChild(deleteBtn)
 
 
 }
@@ -233,25 +235,50 @@ function renderGUI() {
 // }
 
 //Factory Functions you FUCKING MORON!!!!
+
+
+const projectList = []
+let projectTaskList = []
+
+
+const taskName = document.getElementById('name')
+const taskDescription = document.getElementById('description')
+const taskDueDate = document.getElementById('dueDate')
+const taskPriority = document.getElementById('priority')
+const newTaskSubmit = document.getElementById('btn-submit')
+const taskCloseBtn = document.getElementById('btn-close-popup')
+
+const projectListDisplay = document.getElementById('project-list')
+const newProjectName = document.getElementById('new-project') 
+const newProjectSubmit = document.getElementById('new-project-init-input')
+
+const tasksDisplay = document.getElementById('tasks-display') 
+const ul = document.createElement('ul')
+
+
+function renderProjectList() {
+    projectList.forEach((element) => {
+        const p = document.createElement('li');
+        p.textContent = element.name;
+        projectListDisplay.appendChild(p)
+
+    })
+}
+
+function renderProjectTasks() {
+    projectList[0].tasks.forEach((element) => {
+        displayTask(element);
+    })
+}
+
+
+
+
 function DomController() {
     // renderGUI();
-    const projectList = []
-    let projectTaskList = []
-    
-    
-    const taskName = document.getElementById('name')
-    const taskDescription = document.getElementById('description')
-    const taskDueDate = document.getElementById('dueDate')
-    const taskPriority = document.getElementById('priority')
-    const newTaskSubmit = document.getElementById('btn-submit')
-    const taskCloseBtn = document.getElementById('btn-close-popup')
-    
-    const projectListDisplay = document.getElementById('project-list')
-    const newProjectName = document.getElementById('new-project') 
-    const newProjectSubmit = document.getElementById('new-project-init-input')
+
     
 
-    const ul = document.createElement('ul')
     
     
     newProjectSubmit.addEventListener('click', function() {
@@ -262,24 +289,22 @@ function DomController() {
 
         projectListDisplay.innerHTML = ''
                 
-        projectList.forEach((element) => {
-            const p = document.createElement('li');
-            p.textContent = element.name;
-            projectListDisplay.appendChild(p)
-    
-        })
-    
+        renderProjectList()
         
     })
+
+
 
     // projectListDisplay.appendChild(ul)
 
     newTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
         // let allTasks = projectsController.getProjectTasks()
-        projectsController.addNewTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
+        projectList[0].newTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
         // allTasks.push(newTask)
-        console.log(allTasks)
+        console.log(projectList[0].tasks)
+        tasksDisplay.innerHTML = '';
+        renderProjectTasks()
     })
 
     taskName.addEventListener('click', function() {
@@ -306,12 +331,17 @@ function DomController() {
         console.log('Close Button Works')
     })
 
-
+    const testProj1 = new Project("Test Project 1")
+    testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
+    testProj1.newTask("Mow Again", "Mow the back yard", "6/14/24", "Medium")
+    testProj1.newTask("Groceries", "Get this week's groceries", "6/20/24", "High")
+    projectList.push(testProj1)
 
     console.log(projectList)
     console.log(projectTaskList)
 
-
+    renderProjectList();
+    renderProjectTasks();
     
     // console.projectsController();
     // console.tasksController();
