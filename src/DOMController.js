@@ -1,6 +1,13 @@
 import * as projectsController from "./APPController.js"
 import * as tasksController from "./APPController.js"
+
 import {Project} from "./project.js"
+import { Task } from "./task.js"
+
+Object.assign(global, projectsController)
+Object.assign(global, tasksController)
+
+// import {Project} from "./project.js"
 
 //pop up form for new task
 
@@ -225,12 +232,11 @@ function renderGUI() {
 
 // }
 
-
 //Factory Functions you FUCKING MORON!!!!
 function DomController() {
-    renderGUI();
+    // renderGUI();
     const projectList = []
-    const projectTaskList = []
+    let projectTaskList = []
     
     
     const taskName = document.getElementById('name')
@@ -240,15 +246,40 @@ function DomController() {
     const newTaskSubmit = document.getElementById('btn-submit')
     const taskCloseBtn = document.getElementById('btn-close-popup')
     
+    const projectListDisplay = document.getElementById('project-list')
     const newProjectName = document.getElementById('new-project') 
     const newProjectSubmit = document.getElementById('new-project-init-input')
+    
 
+    const ul = document.createElement('ul')
+    
+    
+    newProjectSubmit.addEventListener('click', function() {
+        console.log('New Project Submit Button Works')
+        let newProj = new Project(newProjectName.value)
+        projectList.push(newProj)
+        console.log(projectList)
 
-    newTaskSubmit.addEventListener('click', function() {
+        projectListDisplay.innerHTML = ''
+                
+        projectList.forEach((element) => {
+            const p = document.createElement('li');
+            p.textContent = element.name;
+            projectListDisplay.appendChild(p)
+    
+        })
+    
         
-        let allTasks = projectsController.getProjectTasks()
-        let newTask = projectsController.addNewTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
-        allTasks.push(newTask)
+    })
+
+    // projectListDisplay.appendChild(ul)
+
+    newTaskSubmit.addEventListener('click', function(event) {
+        event.preventDefault();
+        // let allTasks = projectsController.getProjectTasks()
+        projectsController.addNewTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
+        // allTasks.push(newTask)
+        console.log(allTasks)
     })
 
     taskName.addEventListener('click', function() {
@@ -266,8 +297,8 @@ function DomController() {
     taskPriority.addEventListener('click', function() {
         console.log('priority Button Works')
     })
-
-    newTaskSubmit.addEventListener('click', function() {
+    
+    newTaskSubmit.addEventListener('addNewTaskclick', function() {
         console.log('Submit Button Works')
     })
 
@@ -275,13 +306,6 @@ function DomController() {
         console.log('Close Button Works')
     })
 
-    newProjectSubmit.addEventListener('click', function() {
-        console.log('New Project Submit Button Works')
-        let newProj = new Project(newProjectName.value)
-        projectList.push(newProj)
-        console.log(projectList)
-
-    })
 
 
     console.log(projectList)

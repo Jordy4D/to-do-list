@@ -1,10 +1,10 @@
 import { Project } from './project.js'
 import { Task } from './task.js'
 
+let activeProjects = [];
+let currentProjectTasks = []
 
 function projectsController() {
-    let activeProjects = [];
-    let currentProjectTasks = []
 
     const getCurrentProject = (index) => {
         return activeProjects[index];
