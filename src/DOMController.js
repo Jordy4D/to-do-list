@@ -265,8 +265,8 @@ function renderProjectList() {
     })
 }
 
-function renderProjectTasks() {
-    projectList[0].tasks.forEach((element) => {
+function renderProjectTasks(index) {
+    projectList[index].tasks.forEach((element) => {
         displayTask(element);
     })
 }
@@ -337,11 +337,17 @@ function DomController() {
     testProj1.newTask("Groceries", "Get this week's groceries", "6/20/24", "High")
     projectList.push(testProj1)
 
+    const testProj2 = new Project("Test Project 2")
+    testProj2.newTask("Fart", "Make her day special", "7/13/25", "High")
+    testProj2.newTask("Walk the Dog", "Bitch needs to calm down", "8/14/24", "None")
+    testProj2.newTask("Code", "Finish this damn To Do List", "7/20/24", "Low")
+    projectList.push(testProj2)
+
     console.log(projectList)
     console.log(projectTaskList)
 
     renderProjectList();
-    renderProjectTasks();
+    renderProjectTasks(0);
     
     // console.projectsController();
     // console.tasksController();
