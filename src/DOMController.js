@@ -239,6 +239,7 @@ function renderGUI() {
 
 const projectList = []
 let projectTaskList = []
+let currentProjectIndex = 0;
 
 
 const taskName = document.getElementById('name')
@@ -255,7 +256,8 @@ const newProjectSubmit = document.getElementById('new-project-init-input')
 
 const tasksDisplay = document.getElementById('tasks-display') 
 const ul = document.createElement('ul')
-let currentProjectIndex = 0;
+
+
 
 function renderProjectList() {
     let i = 0;
@@ -266,6 +268,7 @@ function renderProjectList() {
         p.textContent = element.name;
         // const num = document.querySelectorAll('#id')
 
+        //try to move this out of here into separate function
         p.addEventListener('click', function() {
             console.log(`project name click ${p.id}`)
             currentProjectIndex = p.id 
@@ -277,6 +280,8 @@ function renderProjectList() {
     })
 
 }
+
+
 
 function renderProjectTasks(index) {
     tasksDisplay.innerHTML = '';
@@ -308,44 +313,39 @@ function DomController() {
     })
 
 
-
-    // projectListDisplay.appendChild(ul)
-
     newTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
 
-        // let allTasks = projectsController.getProjectTasks()
         projectList[currentProjectIndex].newTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
-        // allTasks.push(newTask)
         console.log(projectList[currentProjectIndex].tasks)
         tasksDisplay.innerHTML = '';
         renderProjectTasks(currentProjectIndex)
     })
 
 
-    taskName.addEventListener('click', function() {
-        console.log('name Button Works')
-    })
+    // taskName.addEventListener('click', function() {
+    //     console.log('name Button Works')
+    // })
 
-    taskDescription.addEventListener('click', function() {
-        console.log('description Button Works')
-    })
+    // taskDescription.addEventListener('click', function() {
+    //     console.log('description Button Works')
+    // })
 
-    taskDueDate.addEventListener('click', function() {
-        console.log('due Date Button Works')
-    })
+    // taskDueDate.addEventListener('click', function() {
+    //     console.log('due Date Button Works')
+    // })
 
-    taskPriority.addEventListener('click', function() {
-        console.log('priority Button Works')
-    })
+    // taskPriority.addEventListener('click', function() {
+    //     console.log('priority Button Works')
+    // })
     
-    newTaskSubmit.addEventListener('addNewTaskclick', function() {
-        console.log('Submit Button Works')
-    })
+    // newTaskSubmit.addEventListener('addNewTaskclick', function() {
+    //     console.log('Submit Button Works')
+    // })
 
-    taskCloseBtn.addEventListener('click', function() {
-        console.log('Close Button Works')
-    })
+    // taskCloseBtn.addEventListener('click', function() {
+    //     console.log('Close Button Works')
+    // })
 
     const testProj1 = new Project("Test Project 1")
     testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
