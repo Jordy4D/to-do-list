@@ -249,6 +249,7 @@ const newTaskSubmit = document.getElementById('btn-submit')
 const taskCloseBtn = document.getElementById('btn-close-popup')
 
 const projectListDisplay = document.getElementById('project-list')
+const projectListItem = document.querySelectorAll('li.project-list-item')
 const newProjectName = document.getElementById('new-project') 
 const newProjectSubmit = document.getElementById('new-project-init-input')
 
@@ -257,15 +258,29 @@ const ul = document.createElement('ul')
 
 
 function renderProjectList() {
+    let i = 0;
     projectList.forEach((element) => {
         const p = document.createElement('li');
+        p.setAttribute('class', 'project-list-item')
+        p.setAttribute('id', `${i}`)
         p.textContent = element.name;
-        projectListDisplay.appendChild(p)
+        // const num = document.querySelectorAll('#id')
 
+        p.addEventListener('click', function() {
+            console.log(`project name click ${p.id}`)
+            renderProjectTasks(p.id)
+            // return p.id
+        })
+
+        projectListDisplay.appendChild(p)
+        i++
     })
+
+
 }
 
 function renderProjectTasks(index) {
+    tasksDisplay.innerHTML = '';
     projectList[index].tasks.forEach((element) => {
         displayTask(element);
     })
@@ -306,6 +321,13 @@ function DomController() {
         tasksDisplay.innerHTML = '';
         renderProjectTasks()
     })
+
+    // projectListItem.forEach((element) => {
+    //     element.addEventListener('click', function() {
+    //         console.log('new test click')
+    //     })
+    // })
+
 
     taskName.addEventListener('click', function() {
         console.log('name Button Works')
