@@ -255,7 +255,7 @@ const newProjectSubmit = document.getElementById('new-project-init-input')
 
 const tasksDisplay = document.getElementById('tasks-display') 
 const ul = document.createElement('ul')
-
+let currentProjectIndex = 0;
 
 function renderProjectList() {
     let i = 0;
@@ -268,14 +268,13 @@ function renderProjectList() {
 
         p.addEventListener('click', function() {
             console.log(`project name click ${p.id}`)
+            currentProjectIndex = p.id 
             renderProjectTasks(p.id)
-            // return p.id
         })
 
         projectListDisplay.appendChild(p)
         i++
     })
-
 
 }
 
@@ -314,19 +313,14 @@ function DomController() {
 
     newTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
-        // let allTasks = projectsController.getProjectTasks()
-        projectList[0].newTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
-        // allTasks.push(newTask)
-        console.log(projectList[0].tasks)
-        tasksDisplay.innerHTML = '';
-        renderProjectTasks()
-    })
 
-    // projectListItem.forEach((element) => {
-    //     element.addEventListener('click', function() {
-    //         console.log('new test click')
-    //     })
-    // })
+        // let allTasks = projectsController.getProjectTasks()
+        projectList[currentProjectIndex].newTask(taskName.value, taskDescription.value, taskDueDate.value, taskPriority.value)
+        // allTasks.push(newTask)
+        console.log(projectList[currentProjectIndex].tasks)
+        tasksDisplay.innerHTML = '';
+        renderProjectTasks(currentProjectIndex)
+    })
 
 
     taskName.addEventListener('click', function() {
@@ -369,7 +363,7 @@ function DomController() {
     console.log(projectTaskList)
 
     renderProjectList();
-    renderProjectTasks(0);
+    renderProjectTasks(currentProjectIndex);
     
     // console.projectsController();
     // console.tasksController();
