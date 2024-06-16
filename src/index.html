@@ -21,15 +21,47 @@
                 <ul class="project-list" id="project-list" ></ul>
             </div>
             <div id="tasks-container">
-                <span class="tasks-title"><h2></h2></span>
+                <span class="tasks-header"><h2 class="tasks-title" id="tasks-title"></h2><button id="add-task">Add Task</button></span>
                 <ul id="tasks-display"></ul>
             </div>
             <!-- Delete this form after wiring everything up correctly -->
-            <div class="api-testing-form" id="api-testing-form">
-                <h2 style="color: green;">Popup Form</h2> 
+            <div class="api-edit-form" id="api-edit-form">
+                <h2 style="color: green;">Popup Form Task Edit</h2> 
                     <form class="form-container"> 
-                        <label class="form-label" for="name">Title</label> 
-                        <input class="form-input" type="text" placeholder="Enter Your Username" 
+                        <label class="form-label" for="edit-name">Task Name</label> 
+                        <input class="form-input" type="text" placeholder="Edit Task Name" 
+                            id="edit-name" name="edit-name" required> 
+                        <label class="form-label" for="edit-description">Description</label> 
+                        <input class="form-input" type="text" placeholder="Edit Task Description"
+                            id="edit-description" name="edit-description" required> 
+                        <label class="form-label" for="edit-dueDate">Due Date</label> 
+                        <input class="form-input" type="date" placeholder="Edit Due Date" 
+                            id="edit-dueDate" name="edit-dueDate" required> 
+                        
+                        <label class="form-label" for="edit-priority">Priority</label> 
+                        <input list="priority-choice" id="edit-priority" name="edit-priority">
+                        <datalist class="form-input" type="text" id="priority-choice" > 
+                            <option value="None"></option>
+                            <option value="Low"></option>
+                            <option value="Medium"></option>
+                            <option value="High"></option>
+                        </datalist>
+
+                        <button class="edit-task-submit" id="edit-task-submit" type="submit"> 
+                           Submit 
+                        </button> 
+                    </form> 
+  
+            <button class="edit-btn-close-popup" id="edit-btn-close-popup" type="close"> 
+              Close 
+              </button> 
+            </div>
+            
+            <div class="api-testing-form" id="api-testing-form">
+                <h2 style="color: green;">Popup Form New Task</h2> 
+                    <form class="form-container"> 
+                        <label class="form-label" for="name">Task Name</label> 
+                        <input class="form-input" type="text" placeholder="Enter Task Name" 
                             id="name" name="name" required> 
                         <label class="form-label" for="description">Description</label> 
                         <input class="form-input" type="text" placeholder="Task Description"

@@ -25,8 +25,6 @@ export class Project {
         this.name = newName;
     }
 
-    // deleteTask() {
 
-    // }
 
 }
