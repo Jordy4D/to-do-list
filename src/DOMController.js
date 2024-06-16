@@ -177,7 +177,8 @@ function displayTask(element, index) {
         console.log
         editTask(`${index - 1}`)
         // firing index + 1, not correct so subtracted 1 for workaround ^^^
-    
+        editTaskIndex = index - 1
+        console.log(`current task index is ${editTaskIndex}` )
     })
 
     
@@ -251,6 +252,7 @@ function renderGUI() {
 const projectList = []
 let projectTaskList = []
 let currentProjectIndex = 0;
+let editTaskIndex
 
 window.projectTaskList = projectTaskList
 
@@ -329,6 +331,7 @@ function editTask(task) {
     editTaskDueDate.value = `${projectList[currentProjectIndex].tasks[task].dueDate}`
     editTaskPriority.value = `${projectList[currentProjectIndex].tasks[task].priority}`
 
+
 }
 
 function DomController() {
@@ -369,7 +372,13 @@ function DomController() {
     editTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
         
-        projectList[currentProjectIndex].tasks
+        projectList[currentProjectIndex].tasks[editTaskIndex].changeTitle(editTaskName.value)
+        projectList[currentProjectIndex].tasks[editTaskIndex].changeDescription(editTaskDescription.value)
+        projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
+        projectList[currentProjectIndex].tasks[editTaskIndex].changePriority(editTaskPriority.value)
+
+
+
         tasksDisplay.innerHTML = '';
         renderProjectTasks(currentProjectIndex)
 
