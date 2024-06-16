@@ -174,11 +174,20 @@ function displayTask(element, index) {
     // editBtn.setAttribute("onclick", `editTask(${index})`);
 
     editBtn.addEventListener('click', function() {
-        console.log
         editTask(`${index - 1}`)
         // firing index + 1, not correct so subtracted 1 for workaround ^^^
         editTaskIndex = index - 1
         console.log(`current task index is ${editTaskIndex}` )
+    })
+
+    deleteBtn.addEventListener('click', function() {
+        // console.log(`delete btn click on task index ${index-1}`)
+        
+        let deleteIndex = index - 1
+        deleteTask(deleteIndex)
+
+
+
     })
 
     
@@ -287,6 +296,9 @@ function renderProjectList() {
     let i = 0;
     projectList.forEach((element) => {
         const p = document.createElement('li');
+        const pDeleteBtn = document.createElement('button')
+        pDeleteBtn.setAttribute('id', `${i}`)
+        pDeleteBtn.textContent = `Delete`
         p.setAttribute('class', 'project-list-item')
         p.setAttribute('id', `${i}`)
         p.textContent = element.name;
@@ -299,7 +311,14 @@ function renderProjectList() {
             renderProjectTasks(p.id)
         })
 
+        pDeleteBtn.addEventListener('click', function() {
+            deleteProject(pDeleteBtn.id)
+            // renderProjectList()
+        })
+
+        p.appendChild(pDeleteBtn)
         projectListDisplay.appendChild(p)
+
         i++
     })
 
@@ -330,9 +349,22 @@ function editTask(task) {
     editTaskDescription.value = `${projectList[currentProjectIndex].tasks[task].description}`
     editTaskDueDate.value = `${projectList[currentProjectIndex].tasks[task].dueDate}`
     editTaskPriority.value = `${projectList[currentProjectIndex].tasks[task].priority}`
+}
 
+function deleteTask(index) {
+    
+    projectList[currentProjectIndex].tasks.splice(index, 1)
+    renderProjectTasks(currentProjectIndex)
 
 }
+
+function deleteProject(index) {
+    projectList.splice(index, 1)
+    
+    projectListDisplay.innerHTML = ''
+    renderProjectList()
+}
+
 
 function DomController() {
     // renderGUI();
@@ -376,7 +408,6 @@ function DomController() {
         projectList[currentProjectIndex].tasks[editTaskIndex].changeDescription(editTaskDescription.value)
         projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
         projectList[currentProjectIndex].tasks[editTaskIndex].changePriority(editTaskPriority.value)
-
 
 
         tasksDisplay.innerHTML = '';
