@@ -38,14 +38,14 @@
                         <input class="form-input" type="date" placeholder="Edit Due Date" 
                             id="edit-dueDate" name="edit-dueDate" required> 
                         
-                        <label class="form-label" for="edit-priority">Priority</label> 
-                        <input list="priority-choice" id="edit-priority" name="edit-priority">
-                        <datalist class="form-input" type="text" id="priority-choice" > 
-                            <option value="None"></option>
-                            <option value="Low"></option>
-                            <option value="Medium"></option>
-                            <option value="High"></option>
-                        </datalist>
+                        <label class="form-label" for="edit-priority-choice">Priority</label> 
+                        <!-- <input list="edit-priority-choice" id="edit-priority" name="edit-priority"> -->
+                        <select class="form-input" id="edit-priority-choice" name="edit-priority-choice"> 
+                            <option value="None">None</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
 
                         <button class="edit-task-submit" id="edit-task-submit" type="submit"> 
                            Submit 
@@ -70,14 +70,14 @@
                         <input class="form-input" type="date" placeholder="Due Date" 
                             id="dueDate" name="dueDate" required> 
                         
-                        <label class="form-label" for="priority">Priority</label> 
-                        <input list="priority-choice" id="priority" name="priority">
-                        <datalist class="form-input" type="text" id="priority-choice" > 
-                            <option value="None"></option>
-                            <option value="Low"></option>
-                            <option value="Medium"></option>
-                            <option value="High"></option>
-                        </datalist>
+                        <label class="form-label" for="priority-choice">Priority</label> 
+                        <!-- <input list="priority-choice" id="priority" name="priority"> -->
+                        <select class="form-input" id="priority-choice" name="priority-choice"> 
+                            <option value="None">None</option>
+                            <option value="Low">Low</option>
+                            <option value="Medium">Medium</option>
+                            <option value="High">High</option>
+                        </select>
 
                         <button class="btn-submit" id="btn-submit" type="submit"> 
                            Submit 

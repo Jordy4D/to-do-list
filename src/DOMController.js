@@ -268,14 +268,14 @@ window.projectTaskList = projectTaskList
 const newTaskName = document.getElementById('name')
 const newTaskDescription = document.getElementById('description')
 const newTaskDueDate = document.getElementById('dueDate')
-const newTaskPriority = document.getElementById('priority')
+const newTaskPriority = document.getElementById('priority-choice')
 const newTaskSubmit = document.getElementById('btn-submit')
 
 const editTaskBtn = document.querySelectorAll('.editBtn')
 const editTaskName = document.getElementById('edit-name')
 const editTaskDescription = document.getElementById('edit-description')
 const editTaskDueDate = document.getElementById('edit-dueDate')
-const editTaskPriority = document.getElementById('edit-priority')
+const editTaskPriority = document.getElementById('edit-priority-choice')
 const editTaskSubmit = document.getElementById('edit-task-submit')
 const taskCloseBtn = document.getElementById('btn-close-popup')
 const taskDeleteBtn = document.querySelectorAll('.deleteBtn')
@@ -294,33 +294,39 @@ const ul = document.createElement('ul')
 
 function renderProjectList() {
     let i = 0;
-    projectList.forEach((element) => {
-        const p = document.createElement('li');
-        const pDeleteBtn = document.createElement('button')
-        pDeleteBtn.setAttribute('id', `${i}`)
-        pDeleteBtn.textContent = `Delete`
-        p.setAttribute('class', 'project-list-item')
-        p.setAttribute('id', `${i}`)
-        p.textContent = element.name;
-        // const num = document.querySelectorAll('#id')
+    console.log("current render project list index is " + projectList[currentProjectIndex])
 
-        //try to move this out of here into separate function
-        p.addEventListener('click', function() {
-            console.log(`project name click ${p.id}`)
-            currentProjectIndex = p.id 
-            renderProjectTasks(p.id)
+    if (projectList[currentProjectIndex] !== undefined) {
+        projectList.forEach((element) => {
+            const p = document.createElement('li');
+            const pDeleteBtn = document.createElement('button')
+            pDeleteBtn.setAttribute('id', `${i}`)
+            pDeleteBtn.textContent = `Delete`
+            p.setAttribute('class', 'project-list-item')
+            p.setAttribute('id', `${i}`)
+            p.textContent = element.name;
+            // const num = document.querySelectorAll('#id')
+    
+            //try to move this out of here into separate function
+            p.addEventListener('click', function() {
+                console.log(`project name click ${p.id}`)
+                currentProjectIndex = p.id 
+                renderProjectTasks(p.id)
+            })
+    
+            pDeleteBtn.addEventListener('click', function() {
+                deleteProject(pDeleteBtn.id)
+                // renderProjectList()
+            })
+    
+            p.appendChild(pDeleteBtn)
+            projectListDisplay.appendChild(p)
+    
+            i++
         })
-
-        pDeleteBtn.addEventListener('click', function() {
-            deleteProject(pDeleteBtn.id)
-            // renderProjectList()
-        })
-
-        p.appendChild(pDeleteBtn)
-        projectListDisplay.appendChild(p)
-
-        i++
-    })
+    } else {
+        console.log("start a new project")
+    }
 
 }
 
@@ -328,20 +334,31 @@ function renderProjectList() {
 
 function renderProjectTasks(index) {
     let taskI = 0;
-    tasksTitle.innerHTML = '';
-    tasksTitle.innerHTML = `${projectList[currentProjectIndex].name}`
+    console.log(currentProjectIndex)
 
-    tasksDisplay.innerHTML = '';
+    if (projectList[currentProjectIndex] !== undefined) {
+        addTaskBtn.classList.remove('no-display')
+        tasksTitle.innerHTML = '';
+        tasksTitle.innerHTML = `${projectList[currentProjectIndex].name}`
+    
+        tasksDisplay.innerHTML = '';
+    
+        projectList[index].tasks.forEach((element) => {
+            displayTask(element, taskI);
+    
+            taskI++
+        })
+    } else {
+        tasksTitle.innerHTML = '';
+        tasksDisplay.innerHTML = '';
+        currentProjectIndex = 0;
+        tasksTitle.innerHTML = 'Start a New Project To Add To Do Items';
+        addTaskBtn.classList.add('no-display')
 
-    projectList[index].tasks.forEach((element) => {
-        displayTask(element, taskI);
-
-        taskI++
-    })
+    }
 }
 
 
-// can't find projecttasklist[task] yet
 function editTask(task) {
     console.log(`edit task function firing ${task}`)
 
@@ -363,6 +380,7 @@ function deleteProject(index) {
     
     projectListDisplay.innerHTML = ''
     renderProjectList()
+    console.log("current project list index is " + `${currentProjectIndex}`)
 }
 
 

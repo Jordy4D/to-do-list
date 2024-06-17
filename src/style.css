@@ -260,3 +260,7 @@ header {
     grid-column: 6 / 9;
     grid-row: 3;
 }
+
+.no-display {
+    display: none;
+}
