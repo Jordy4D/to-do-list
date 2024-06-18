@@ -376,40 +376,46 @@ function deleteTask(index) {
 }
 
 function deleteProject(index) {
-    projectList.splice(index, 1)
-    
     projectListDisplay.innerHTML = ''
+    projectList.splice(index, 1)
     renderProjectList()
+    
     console.log("current project list index is " + `${currentProjectIndex}`)
 }
 
 
 function DomController() {
-    // renderGUI();
     
     let currentTaskList = projectTaskList
-    
-    //not working yet
-    // function deleteTask(index) {
-    //     projectTaskList[index].innerHTML = '';
-    // }
 
     
     newProjectSubmit.addEventListener('click', function() {
         console.log('New Project Submit Button Works')
         let newProj = new Project(newProjectName.value)
+        
+        if (newProj.name === "" ) {
+            alert("Please name your project")
+            return
+        } 
         projectList.push(newProj)
         console.log(projectList)
-
+        
         projectListDisplay.innerHTML = ''
         
         renderProjectList()
-        
     })
         
 
     newTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
+
+        if (newTaskName.value === '' ||
+            newTaskDescription.value === '' ||
+            newTaskDueDate.value === '' ||
+            newTaskPriority.value === '') {
+                alert('please complete all fields of your task')
+                return
+            }
 
         projectList[currentProjectIndex].newTask(newTaskName.value, newTaskDescription.value, newTaskDueDate.value, newTaskPriority.value)
         console.log(projectList[currentProjectIndex].tasks)
@@ -422,6 +428,14 @@ function DomController() {
     editTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
         
+        if (editTaskName.value === '' ||
+            editTaskDescription.value === '' ||
+            editTaskDueDate.value === '' ||
+            editTaskPriority.value === '') {
+                alert('please complete all fields of your task')
+                return
+            }
+
         projectList[currentProjectIndex].tasks[editTaskIndex].changeTitle(editTaskName.value)
         projectList[currentProjectIndex].tasks[editTaskIndex].changeDescription(editTaskDescription.value)
         projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
