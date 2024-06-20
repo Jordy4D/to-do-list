@@ -264,3 +264,7 @@ header {
 .no-display {
     display: none;
 }
+
+.display {
+    display: block;
+}

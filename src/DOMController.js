@@ -279,6 +279,7 @@ const editTaskPriority = document.getElementById('edit-priority-choice')
 const editTaskSubmit = document.getElementById('edit-task-submit')
 const taskCloseBtn = document.getElementById('btn-close-popup')
 const taskDeleteBtn = document.querySelectorAll('.deleteBtn')
+const apiTestingForm = document.getElementById('api-testing-form')
 
 const projectListDisplay = document.getElementById('project-list')
 const projectListItem = document.querySelectorAll('li.project-list-item')
@@ -424,7 +425,17 @@ function DomController() {
         renderProjectTasks(currentProjectIndex)
     })
         
- 
+    addTaskBtn.addEventListener('click', function() {
+        apiTestingForm.classList.remove('no-display')
+        apiTestingForm.classList.add('display')
+    })
+
+    taskCloseBtn.addEventListener('click', function() {
+        console.log('close button works!')
+        apiTestingForm.classList.add('no-display')
+        apiTestingForm.classList.remove('display')
+
+    })
 
     editTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
