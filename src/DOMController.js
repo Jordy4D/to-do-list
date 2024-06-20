@@ -295,7 +295,7 @@ const ul = document.createElement('ul')
 function renderProjectList() {
     let i = 0;
     console.log("current render project list index is " + projectList[currentProjectIndex])
-
+    
     if (projectList[currentProjectIndex] !== undefined) {
         projectList.forEach((element) => {
             const p = document.createElement('li');
@@ -378,9 +378,10 @@ function deleteTask(index) {
 function deleteProject(index) {
     projectListDisplay.innerHTML = ''
     projectList.splice(index, 1)
+    console.log(`the project ${projectList[index]} was removed`)
     renderProjectList()
     
-    console.log("current project list index is " + `${currentProjectIndex}`)
+    // console.log("current project list index is " + `${currentProjectIndex}`)
 }
 
 

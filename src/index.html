@@ -60,26 +60,44 @@
             <div class="api-testing-form" id="api-testing-form">
                 <h2 style="color: green;">Popup Form New Task</h2> 
                     <form class="form-container"> 
-                        <label class="form-label" for="name">Task Name</label> 
-                        <input class="form-input" type="text" placeholder="Enter Task Name" 
-                            id="name" name="name" required> 
-                        <label class="form-label" for="description">Description</label> 
-                        <input class="form-input" type="text" placeholder="Task Description"
-                            id="description" name="description" required> 
-                        <label class="form-label" for="dueDate">Due Date</label> 
-                        <input class="form-input" type="date" placeholder="Due Date" 
-                            id="dueDate" name="dueDate" required> 
+                        <label  class="form-label" 
+                                for="name">Task Name</label> 
+                        <input  class="form-input" 
+                                type="text" 
+                                placeholder="Enter Task Name" 
+                                id="name" 
+                                name="name" required> 
                         
-                        <label class="form-label" for="priority-choice">Priority</label> 
-                        <!-- <input list="priority-choice" id="priority" name="priority"> -->
-                        <select class="form-input" id="priority-choice" name="priority-choice"> 
+                        <label  class="form-label" 
+                                for="description">Description</label> 
+                        <input  class="form-input" 
+                                type="text" 
+                                placeholder="Task Description"
+                                id="description" 
+                                name="description" required> 
+                        
+                        <label  class="form-label" 
+                                for="dueDate">Due Date</label> 
+                        <input  class="form-input"  
+                                type="date" 
+                                placeholder="Due Date" 
+                                id="dueDate" 
+                                name="dueDate" required> 
+                        
+                        <label  class="form-label" 
+                                for="priority-choice">Priority</label> 
+                        <select class="form-input" 
+                                id="priority-choice" 
+                                name="priority-choice"> 
                             <option value="None">None</option>
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
                         </select>
 
-                        <button class="btn-submit" id="btn-submit" type="submit"> 
+                        <button class="btn-submit" 
+                                id="btn-submit" 
+                                type="submit"> 
                            Submit 
                         </button> 
                     </form> 
