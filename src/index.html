@@ -24,87 +24,65 @@
                 <span class="tasks-header"><h2 class="tasks-title" id="tasks-title"></h2><button id="add-task">Add Task</button></span>
                 <ul id="tasks-display"></ul>
             </div>
-            <!-- Delete this form after wiring everything up correctly -->
-            <div class="api-edit-form" id="api-edit-form">
-                <h2 style="color: green;">Popup Form Task Edit</h2> 
-                    <form class="form-container"> 
-                        <label class="form-label" for="edit-name">Task Name</label> 
-                        <input class="form-input" type="text" placeholder="Edit Task Name" 
-                            id="edit-name" name="edit-name" required> 
-                        <label class="form-label" for="edit-description">Description</label> 
-                        <input class="form-input" type="text" placeholder="Edit Task Description"
-                            id="edit-description" name="edit-description" required> 
-                        <label class="form-label" for="edit-dueDate">Due Date</label> 
-                        <input class="form-input" type="date" placeholder="Edit Due Date" 
-                            id="edit-dueDate" name="edit-dueDate" required> 
-                        
-                        <label class="form-label" for="edit-priority-choice">Priority</label> 
-                        <!-- <input list="edit-priority-choice" id="edit-priority" name="edit-priority"> -->
-                        <select class="form-input" id="edit-priority-choice" name="edit-priority-choice"> 
-                            <option value="None">None</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
-
-                        <button class="edit-task-submit" id="edit-task-submit" type="submit"> 
-                           Submit 
-                        </button> 
-                    </form> 
-  
-            <button class="edit-btn-close-popup" id="edit-btn-close-popup" type="close"> 
-              Close 
-              </button> 
+            <div class="edit-task-form-container" id="edit-task-form-container">
+                <div class="edit-task-form no-form-display" id="edit-task-form">
+                    <h2 style="color: green;">Popup Form Task Edit</h2> 
+                        <form class="form-container"> 
+                            <label class="form-label" for="edit-name">Task Name</label> 
+                            <input class="form-input" type="text" placeholder="Edit Task Name" 
+                                id="edit-name" name="edit-name" required> 
+                            <label class="form-label" for="edit-description">Description</label> 
+                            <input class="form-input" type="text" placeholder="Edit Task Description"
+                                id="edit-description" name="edit-description" required> 
+                            <label class="form-label" for="edit-dueDate">Due Date</label> 
+                            <input class="form-input" type="date" placeholder="Edit Due Date" 
+                                id="edit-dueDate" name="edit-dueDate" required> 
+                            <label class="form-label" for="edit-priority-choice">Priority</label> 
+                            <select class="form-input" id="edit-priority-choice" name="edit-priority-choice"> 
+                                <option value="None">None</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                            <button class="edit-task-submit" id="edit-task-submit" type="submit"> 
+                                Submit 
+                            </button> 
+                        </form> 
+                    <button class="edit-btn-close-popup" id="edit-btn-close-popup" type="close"> 
+                        Close 
+                    </button> 
+                </div>
             </div>
-            
-            <div class="api-testing-form" id="api-testing-form">
-                <h2 style="color: green;">Popup Form New Task</h2> 
-                    <form class="form-container"> 
-                        <label  class="form-label" 
-                                for="name">Task Name</label> 
-                        <input  class="form-input" 
-                                type="text" 
-                                placeholder="Enter Task Name" 
-                                id="name" 
-                                name="name" required> 
-                        
-                        <label  class="form-label" 
-                                for="description">Description</label> 
-                        <input  class="form-input" 
-                                type="text" 
-                                placeholder="Task Description"
-                                id="description" 
-                                name="description" required> 
-                        
-                        <label  class="form-label" 
-                                for="dueDate">Due Date</label> 
-                        <input  class="form-input"  
-                                type="date" 
-                                placeholder="Due Date" 
-                                id="dueDate" 
-                                name="dueDate" required> 
-                        
-                        <label  class="form-label" 
-                                for="priority-choice">Priority</label> 
-                        <select class="form-input" 
-                                id="priority-choice" 
-                                name="priority-choice"> 
-                            <option value="None">None</option>
-                            <option value="Low">Low</option>
-                            <option value="Medium">Medium</option>
-                            <option value="High">High</option>
-                        </select>
+            <div class="new-task-form-container" id="new-task-form-container">
+                <div class="new-task-form no-form-display" id="new-task-form">
+                    <h2 style="color: green;">Popup Form New Task</h2> 
+                        <form class="form-container"> 
+                            <label  class="form-label" 
+                                    for="name">Task Name</label> 
+                            <input  class="form-input" type="text" placeholder="Enter Task Name" 
+                                    id="name" name="name" required> 
+                            <label  class="form-label" for="description">Description</label> 
+                            <input  class="form-input" type="text" placeholder="Task Description"
+                                    id="description" name="description" required> 
+                            <label  class="form-label" for="dueDate">Due Date</label> 
+                            <input  class="form-input" type="date" placeholder="Due Date" 
+                                    id="dueDate" name="dueDate" required> 
+                            <label  class="form-label" for="priority-choice">Priority</label> 
+                            <select class="form-input" id="priority-choice" name="priority-choice"> 
+                                <option value="None">None</option>
+                                <option value="Low">Low</option>
+                                <option value="Medium">Medium</option>
+                                <option value="High">High</option>
+                            </select>
+                            <button class="btn-submit" id="btn-submit" type="submit"> 
+                               Submit 
+                            </button> 
+                        </form> 
+                    <button class="btn-close-popup" id="btn-close-popup" type="close"> 
+                        Close 
+                    </button> 
+                </div>
 
-                        <button class="btn-submit" 
-                                id="btn-submit" 
-                                type="submit"> 
-                           Submit 
-                        </button> 
-                    </form> 
-  
-            <button class="btn-close-popup" id="btn-close-popup" type="close"> 
-              Close 
-              </button> 
             </div>
         </div>
     </div>

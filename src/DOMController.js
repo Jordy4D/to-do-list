@@ -158,6 +158,7 @@ function displayTask(element, index) {
     myP2.classList.add("task-dueDate")
     myP3.classList.add("task-priority")
     editBtn.classList.add('editBtn')
+    editBtn.setAttribute('id', "editBtn")
     deleteBtn.classList.add('deleteBtn')
     
     
@@ -174,10 +175,18 @@ function displayTask(element, index) {
     // editBtn.setAttribute("onclick", `editTask(${index})`);
 
     editBtn.addEventListener('click', function() {
+        editTaskFormContainer.classList.add('edit-task-form-container-show')
+        editTaskFormContainer.classList.remove('edit-task-form-container')
+        editTaskForm.classList.remove('no-form-display')
+        editTaskForm.classList.add('form-display')
+
         editTask(`${index - 1}`)
         // firing index + 1, not correct so subtracted 1 for workaround ^^^
         editTaskIndex = index - 1
         console.log(`current task index is ${editTaskIndex}` )
+
+
+
     })
 
     deleteBtn.addEventListener('click', function() {
@@ -271,15 +280,21 @@ const newTaskDueDate = document.getElementById('dueDate')
 const newTaskPriority = document.getElementById('priority-choice')
 const newTaskSubmit = document.getElementById('btn-submit')
 
-const editTaskBtn = document.querySelectorAll('.editBtn')
+const editTaskBtn = document.getElementById('editBtn')
 const editTaskName = document.getElementById('edit-name')
 const editTaskDescription = document.getElementById('edit-description')
 const editTaskDueDate = document.getElementById('edit-dueDate')
 const editTaskPriority = document.getElementById('edit-priority-choice')
+const editTaskFormContainer = document.getElementById('edit-task-form-container')
+const editTaskForm = document.getElementById('edit-task-form')
 const editTaskSubmit = document.getElementById('edit-task-submit')
+const editTaskCloseBtn = document.getElementById('edit-btn-close-popup')
+
 const taskCloseBtn = document.getElementById('btn-close-popup')
 const taskDeleteBtn = document.querySelectorAll('.deleteBtn')
-const apiTestingForm = document.getElementById('api-testing-form')
+const newTaskFormContainer = document.getElementById('new-task-form-container')
+const newTaskForm = document.getElementById('new-task-form')
+
 
 const projectListDisplay = document.getElementById('project-list')
 const projectListItem = document.querySelectorAll('li.project-list-item')
@@ -423,23 +438,36 @@ function DomController() {
         console.log(projectList[currentProjectIndex].tasks)
         tasksDisplay.innerHTML = '';
         renderProjectTasks(currentProjectIndex)
+        newTaskForm.classList.add('no-form-display')
+        newTaskForm.classList.remove('form-display')
+        newTaskFormContainer.classList.remove('new-task-form-container-show')
+        newTaskFormContainer.classList.add('new-task-form-container')
     })
         
     addTaskBtn.addEventListener('click', function() {
-        apiTestingForm.classList.remove('no-display')
-        apiTestingForm.classList.add('display')
+        newTaskFormContainer.classList.add('new-task-form-container-show')
+        newTaskFormContainer.classList.remove('new-task-form-container')
+
+        newTaskForm.classList.remove('no-form-display')
+        newTaskForm.classList.add('form-display')
     })
 
     taskCloseBtn.addEventListener('click', function() {
         console.log('close button works!')
-        apiTestingForm.classList.add('no-display')
-        apiTestingForm.classList.remove('display')
+        newTaskForm.classList.add('no-form-display')
+        newTaskForm.classList.remove('form-display')
+        newTaskFormContainer.classList.remove('new-task-form-container-show')
+        newTaskFormContainer.classList.add('new-task-form-container')
+        
 
     })
+
+
 
     editTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
         
+
         if (editTaskName.value === '' ||
             editTaskDescription.value === '' ||
             editTaskDueDate.value === '' ||
@@ -453,10 +481,22 @@ function DomController() {
         projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
         projectList[currentProjectIndex].tasks[editTaskIndex].changePriority(editTaskPriority.value)
 
+        
 
         tasksDisplay.innerHTML = '';
         renderProjectTasks(currentProjectIndex)
+        editTaskFormContainer.classList.remove('edit-task-form-container-show')
+        editTaskFormContainer.classList.add('edit-task-form-container')
+        editTaskForm.classList.add('no-form-display')
+        editTaskForm.classList.remove('form-display')
 
+    })
+
+    editTaskCloseBtn.addEventListener('click', function() {
+        editTaskForm.classList.add('no-form-display')
+        editTaskForm.classList.remove('form-display')
+        editTaskFormContainer.classList.remove('new-task-form-container-show')
+        editTaskFormContainer.classList.add('new-task-form-container')
     })
         
     
