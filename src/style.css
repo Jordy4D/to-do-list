@@ -304,3 +304,20 @@ header {
     transform: scale(0.8);
     animation: fadeInUp 0.5s ease-out forwards;
 } 
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.project-list li {
+    padding: 0 5px;
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 30px;
+    align-items: center;
+}
