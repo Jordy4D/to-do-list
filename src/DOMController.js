@@ -493,10 +493,11 @@ function DomController() {
     })
 
     editTaskCloseBtn.addEventListener('click', function() {
+        editTaskFormContainer.classList.remove('edit-task-form-container-show')
+        editTaskFormContainer.classList.add('edit-task-form-container')
         editTaskForm.classList.add('no-form-display')
         editTaskForm.classList.remove('form-display')
-        editTaskFormContainer.classList.remove('new-task-form-container-show')
-        editTaskFormContainer.classList.add('new-task-form-container')
+    
     })
         
     
