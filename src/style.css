@@ -50,7 +50,22 @@ header {
 }
 
 #new-project {
+    font-size: 20px;
     width: 75%;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+}
+
+#project-init-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+
+#new-project-init-input {
+    font-size: 2em;
+    width: 20%;
 }
 
 .todos {
@@ -78,19 +93,20 @@ header {
 
 .tasks-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding-left: 12px;
     padding-right: 12px;
 }
 
 .tasks-header button {
     width: 100px;
+    margin-bottom: 20px;
 }
 
 #tasks-display {
     display: grid;
-    gap: 5px;
+    gap: 10px;
 }
 
 .task {
@@ -98,9 +114,26 @@ header {
     grid-template-columns: repeat(10, 1fr);
     background-color: white;
     border: 1px solid black;
+    border-radius: 8px;
+    margin: 0 5px;
+    padding: 0 5px;
     align-content: center;
-
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 }
+
+.task:hover {
+    background-color: grey;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+
+.task button {
+    border: none;
+    margin: 0 5px;
+}
+
+
+
+.deleteBtn
 
 .task .task-name,
 .task .task-description,
@@ -145,6 +178,7 @@ header {
     height: 75%!important;
     border-radius: 5px;
     grid-column: 10;
+    background-color: red;
 
 }
 
@@ -313,11 +347,19 @@ header {
 }
 
 .project-list li {
-    padding: 0 5px;
+    padding: 0 5px; 
+    margin: 0 5px;
     background-color: white;
     border-radius: 5px;
     display: flex;
     justify-content: space-between;
     min-height: 30px;
     align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+}
+
+.project-list li:hover {
+    background-color: orange;
+ 
 }
