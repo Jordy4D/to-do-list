@@ -306,6 +306,15 @@ const tasksDisplay = document.getElementById('tasks-display')
 const addTaskBtn = document.getElementById('add-task')
 const ul = document.createElement('ul')
 
+function setStorage() {
+    localStorage.setItem("userProjectList", JSON.stringify(projectList));
+    console.log('set storage was fired')
+}
+
+function setUserProject() {
+    projectList = localStorage.getItem("userProjectList")
+    return projectList
+}
 
 
 function renderProjectList() {
@@ -333,6 +342,7 @@ function renderProjectList() {
             pDeleteBtn.addEventListener('click', function() {
                 deleteProject(pDeleteBtn.id)
                 // renderProjectList()
+                setStorage();
             })
     
             p.appendChild(pDeleteBtn)
@@ -382,27 +392,36 @@ function editTask(task) {
     editTaskDescription.value = `${projectList[currentProjectIndex].tasks[task].description}`
     editTaskDueDate.value = `${projectList[currentProjectIndex].tasks[task].dueDate}`
     editTaskPriority.value = `${projectList[currentProjectIndex].tasks[task].priority}`
+    setStorage();
 }
 
 function deleteTask(index) {
     
     projectList[currentProjectIndex].tasks.splice(index, 1)
+    setStorage();
     renderProjectTasks(currentProjectIndex)
 
 }
 
 function deleteProject(index) {
-    projectListDisplay.innerHTML = ''
+    console.log(`the project "` + projectList[index].name + `" was removed`)
     projectList.splice(index, 1)
-    console.log(`the project ${projectList[index]} was removed`)
+    projectListDisplay.innerHTML = ''
+    setStorage();
     renderProjectList()
-    
     // console.log("current project list index is " + `${currentProjectIndex}`)
 }
 
 
 function DomController() {
     
+    // if (!localStorage.getItem("userProjectList")) {
+    //     projectList = []
+    // } else {
+    //     setUserProject();
+    // }
+      
+
     let currentTaskList = projectTaskList
 
     
@@ -420,6 +439,7 @@ function DomController() {
         projectListDisplay.innerHTML = ''
         
         renderProjectList()
+        setStorage();
     })
         
 
@@ -437,11 +457,15 @@ function DomController() {
         projectList[currentProjectIndex].newTask(newTaskName.value, newTaskDescription.value, newTaskDueDate.value, newTaskPriority.value)
         console.log(projectList[currentProjectIndex].tasks)
         tasksDisplay.innerHTML = '';
+        
         renderProjectTasks(currentProjectIndex)
+        
         newTaskForm.classList.add('no-form-display')
         newTaskForm.classList.remove('form-display')
         newTaskFormContainer.classList.remove('new-task-form-container-show')
         newTaskFormContainer.classList.add('new-task-form-container')
+        
+        setStorage();
     })
         
     addTaskBtn.addEventListener('click', function() {
@@ -450,6 +474,7 @@ function DomController() {
 
         newTaskForm.classList.remove('no-form-display')
         newTaskForm.classList.add('form-display')
+
     })
 
     taskCloseBtn.addEventListener('click', function() {
@@ -458,7 +483,6 @@ function DomController() {
         newTaskForm.classList.remove('form-display')
         newTaskFormContainer.classList.remove('new-task-form-container-show')
         newTaskFormContainer.classList.add('new-task-form-container')
-        
 
     })
 
@@ -489,6 +513,8 @@ function DomController() {
         editTaskFormContainer.classList.add('edit-task-form-container')
         editTaskForm.classList.add('no-form-display')
         editTaskForm.classList.remove('form-display')
+
+        setStorage();
 
     })
 
