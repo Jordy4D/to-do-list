@@ -144,6 +144,7 @@ function taskPopUpForm() {
 function displayTask(element, index) {
     const tasksDisplay = document.getElementById('tasks-display') 
     const taskLi = document.createElement('li')
+    const completedCheck = document.createElement('input')
     const myH4 = document.createElement('h4')
     const myP1 = document.createElement('p')
     const myP2 = document.createElement('p')
@@ -153,6 +154,7 @@ function displayTask(element, index) {
     
     taskLi.classList.add("task")
     taskLi.setAttribute("data-index", `${index}`)
+    completedCheck.setAttribute('type', 'checkbox')
     myH4.classList.add("task-name")
     myP1.classList.add("task-description")
     myP2.classList.add("task-dueDate")
@@ -160,8 +162,6 @@ function displayTask(element, index) {
     editBtn.classList.add('editBtn')
     editBtn.setAttribute('id', "editBtn")
     deleteBtn.classList.add('deleteBtn')
-    
-    
     
     
     
@@ -202,6 +202,7 @@ function displayTask(element, index) {
     
     // displayArea.appendChild(taskLi)
     tasksDisplay.appendChild(taskLi)
+    taskLi.appendChild(completedCheck)
     taskLi.appendChild(myH4)
     taskLi.appendChild(myP1)
     taskLi.appendChild(myP2)
@@ -267,12 +268,17 @@ function renderGUI() {
 
 
 
-const projectList = []
+const projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [];
 let projectTaskList = []
 let currentProjectIndex = 0;
 let editTaskIndex
 
-window.projectTaskList = projectTaskList
+
+
+// window.currentProjectIndex = currentProjectIndex;
+window.projectTaskList = projectTaskList;
+window.projectList = projectList;
+
 
 const newTaskName = document.getElementById('name')
 const newTaskDescription = document.getElementById('description')
@@ -311,17 +317,18 @@ function setStorage() {
     console.log('set storage was fired')
 }
 
-function setUserProject() {
-    projectList = localStorage.getItem("userProjectList")
-    return projectList
-}
+// function setUserProject() {
+//     projectList = localStorage.getItem("userProjectList")
+//     return projectList
+// }
 
 
 function renderProjectList() {
     let i = 0;
     console.log("current render project list index is " + projectList[currentProjectIndex])
     
-    if (projectList[currentProjectIndex] !== undefined) {
+    if (projectList && projectList.length) {
+        projectListDisplay.innerHTML = '';
         projectList.forEach((element) => {
             const p = document.createElement('li');
             const pDeleteBtn = document.createElement('button')
@@ -334,15 +341,16 @@ function renderProjectList() {
     
             //try to move this out of here into separate function
             p.addEventListener('click', function() {
-                console.log(`project name click ${p.id}`)
-                currentProjectIndex = p.id 
+                currentProjectIndex = p.id
+                console.log(`current project index is ${currentProjectIndex}`)
                 renderProjectTasks(p.id)
+
             })
     
             pDeleteBtn.addEventListener('click', function() {
                 deleteProject(pDeleteBtn.id)
                 // renderProjectList()
-                setStorage();
+                // setStorage();
             })
     
             p.appendChild(pDeleteBtn)
@@ -392,14 +400,15 @@ function editTask(task) {
     editTaskDescription.value = `${projectList[currentProjectIndex].tasks[task].description}`
     editTaskDueDate.value = `${projectList[currentProjectIndex].tasks[task].dueDate}`
     editTaskPriority.value = `${projectList[currentProjectIndex].tasks[task].priority}`
-    setStorage();
+    // setStorage();
 }
 
 function deleteTask(index) {
     
     projectList[currentProjectIndex].tasks.splice(index, 1)
-    setStorage();
+    // setStorage();
     renderProjectTasks(currentProjectIndex)
+    
 
 }
 
@@ -407,45 +416,65 @@ function deleteProject(index) {
     console.log(`the project "` + projectList[index].name + `" was removed`)
     projectList.splice(index, 1)
     projectListDisplay.innerHTML = ''
+    // currentProjectIndex = index - 1
     setStorage();
+    // renderProjectTasks(index - 1)
+
+
+    renderProjectTasks(currentProjectIndex);
     renderProjectList()
+
     // console.log("current project list index is " + `${currentProjectIndex}`)
 }
 
 
+// const testProj1 = new Project("Home Chores")
+// testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
+// testProj1.newTask("Mow Again", "Mow the back yard", "6/14/24", "Medium")
+// testProj1.newTask("Groceries", "Get this week's groceries", "6/20/24", "High")
+// projectList.push(testProj1)
+
+// const testProj2 = new Project("Fun Chores")
+// testProj2.newTask("Fart", "Make her day special", "7/13/25", "High")
+// testProj2.newTask("Walk the Dog", "Bitch needs to calm down", "8/14/24", "None")
+// testProj2.newTask("Code", "Finish this damn To Do List", "7/20/24", "Low")
+// projectList.push(testProj2)
+
+
 function DomController() {
-    
     // if (!localStorage.getItem("userProjectList")) {
-    //     projectList = []
+        //     projectList = []
     // } else {
-    //     setUserProject();
+        //     setUserProject();
     // }
-      
-
+    
     let currentTaskList = projectTaskList
-
+    
     
     newProjectSubmit.addEventListener('click', function() {
         console.log('New Project Submit Button Works')
-        let newProj = new Project(newProjectName.value)
+        let newProj = new Project(newProjectName.value.toString())
         
         if (newProj.name === "" ) {
             alert("Please name your project")
             return
         } 
+
+
         projectList.push(newProj)
         console.log(projectList)
         
         projectListDisplay.innerHTML = ''
         
-        renderProjectList()
         setStorage();
+        renderProjectList();
+        renderProjectTasks();
     })
-        
-
+    
+    
     newTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
-
+        
         if (newTaskName.value === '' ||
             newTaskDescription.value === '' ||
             newTaskDueDate.value === '' ||
@@ -453,11 +482,14 @@ function DomController() {
                 alert('please complete all fields of your task')
                 return
             }
-
-        projectList[currentProjectIndex].newTask(newTaskName.value, newTaskDescription.value, newTaskDueDate.value, newTaskPriority.value)
+            
+        projectList[currentProjectIndex].newTask(newTaskName.value, 
+                                                newTaskDescription.value, 
+                                                newTaskDueDate.value, 
+                                                newTaskPriority.value)
         console.log(projectList[currentProjectIndex].tasks)
         tasksDisplay.innerHTML = '';
-        
+            
         renderProjectTasks(currentProjectIndex)
         
         newTaskForm.classList.add('no-form-display')
@@ -467,31 +499,31 @@ function DomController() {
         
         setStorage();
     })
-        
+    
     addTaskBtn.addEventListener('click', function() {
         newTaskFormContainer.classList.add('new-task-form-container-show')
         newTaskFormContainer.classList.remove('new-task-form-container')
-
+        
         newTaskForm.classList.remove('no-form-display')
         newTaskForm.classList.add('form-display')
-
+        
     })
-
+    
     taskCloseBtn.addEventListener('click', function() {
         console.log('close button works!')
         newTaskForm.classList.add('no-form-display')
         newTaskForm.classList.remove('form-display')
         newTaskFormContainer.classList.remove('new-task-form-container-show')
         newTaskFormContainer.classList.add('new-task-form-container')
-
+        
     })
-
-
-
+    
+    
+    
     editTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
         
-
+        
         if (editTaskName.value === '' ||
             editTaskDescription.value === '' ||
             editTaskDueDate.value === '' ||
@@ -499,57 +531,48 @@ function DomController() {
                 alert('please complete all fields of your task')
                 return
             }
-
-        projectList[currentProjectIndex].tasks[editTaskIndex].changeTitle(editTaskName.value)
-        projectList[currentProjectIndex].tasks[editTaskIndex].changeDescription(editTaskDescription.value)
-        projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
-        projectList[currentProjectIndex].tasks[editTaskIndex].changePriority(editTaskPriority.value)
-
-        
-
-        tasksDisplay.innerHTML = '';
-        renderProjectTasks(currentProjectIndex)
-        editTaskFormContainer.classList.remove('edit-task-form-container-show')
-        editTaskFormContainer.classList.add('edit-task-form-container')
-        editTaskForm.classList.add('no-form-display')
-        editTaskForm.classList.remove('form-display')
-
-        setStorage();
-
+            
+            projectList[currentProjectIndex].tasks[editTaskIndex].changeTitle(editTaskName.value)
+            projectList[currentProjectIndex].tasks[editTaskIndex].changeDescription(editTaskDescription.value)
+            projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
+            projectList[currentProjectIndex].tasks[editTaskIndex].changePriority(editTaskPriority.value)
+            
+            
+            
+            tasksDisplay.innerHTML = '';
+            renderProjectTasks(currentProjectIndex)
+            editTaskFormContainer.classList.remove('edit-task-form-container-show')
+            editTaskFormContainer.classList.add('edit-task-form-container')
+            editTaskForm.classList.add('no-form-display')
+            editTaskForm.classList.remove('form-display')
+            
+            // setStorage();
+            
     })
-
+        
     editTaskCloseBtn.addEventListener('click', function() {
         editTaskFormContainer.classList.remove('edit-task-form-container-show')
         editTaskFormContainer.classList.add('edit-task-form-container')
         editTaskForm.classList.add('no-form-display')
         editTaskForm.classList.remove('form-display')
-    
+        
     })
         
+        
+
+        
     
-
-    const testProj1 = new Project("Home Chores")
-    testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
-    testProj1.newTask("Mow Again", "Mow the back yard", "6/14/24", "Medium")
-    testProj1.newTask("Groceries", "Get this week's groceries", "6/20/24", "High")
-    projectList.push(testProj1)
-
-    const testProj2 = new Project("Fun Chores")
-    testProj2.newTask("Fart", "Make her day special", "7/13/25", "High")
-    testProj2.newTask("Walk the Dog", "Bitch needs to calm down", "8/14/24", "None")
-    testProj2.newTask("Code", "Finish this damn To Do List", "7/20/24", "Low")
-    projectList.push(testProj2)
-
     console.log(projectList)
     console.log(projectTaskList)
-
+        
     renderProjectList();
     renderProjectTasks(currentProjectIndex);
+    // setStorage()
     
     // console.projectsController();
     // console.tasksController();
-  
-    return { projectList, projectTaskList, currentTaskList }
+    
+    return { projectList, projectTaskList, currentTaskList, currentProjectIndex }
 }
 
 export { DomController }

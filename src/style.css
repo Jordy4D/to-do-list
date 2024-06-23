@@ -13,6 +13,10 @@
     width: 100vw;
 }
 
+button {
+    cursor: pointer;
+}
+
 header {
     grid-row: 1;
     grid-column: 1 / 13;
@@ -67,6 +71,10 @@ header {
     font-size: 2em;
     width: 20%;
 }
+
+#new-project-init-input:hover {
+    cursor: pointer;
+}   
 
 .todos {
     background-color: rgb(255, 133, 133);
@@ -124,6 +132,7 @@ header {
 .task:hover {
     background-color: grey;
     box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    cursor: pointer;
 }
 
 .task button {
@@ -146,8 +155,12 @@ header {
 
 }
 
+.task-completed {
+    grid-column: 1;
+}
+
 .task-name {
-    grid-column: 1 / 3;
+    grid-column: 2 / 3;
 
 }
 
@@ -179,7 +192,10 @@ header {
     border-radius: 5px;
     grid-column: 10;
     background-color: red;
+}
 
+.deleteBtn:hover {
+    background-color: crimson;
 }
 
 .btn-submit { 
@@ -195,6 +211,7 @@ header {
 
 .btn-submit:hover { 
     background-color: #4caf50; 
+    cursor: pointer;
 } 
 
 .newTaskOverlay-container { 
@@ -267,7 +284,8 @@ header {
 
 .btn-submit:hover, 
 .btn-close-popup:hover { 
-    background-color: #4caf50; 
+    background-color: #4caf50;
+    cursor: pointer; 
 } 
 
 /* Keyframes for fadeInUp animation  */
@@ -294,6 +312,10 @@ header {
     grid-column: 6 / 9;
     grid-row: 3;
 } */
+
+.no-display {
+    display: none;
+}
 
 .no-form-display {
     display: none!important;
@@ -361,5 +383,6 @@ header {
 
 .project-list li:hover {
     background-color: orange;
+    cursor: pointer;
  
 }
