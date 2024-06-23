@@ -574,6 +574,31 @@ function DomController() {
     })
   
 
+    function changeTitle(newTitle) {
+        this.title = newTitle;
+    }
+    
+    function changeDescription(newDescription) {
+        this.description = newDescription;
+    }
+    
+    function changeDueDate(newDueDate) {
+        this.dueDate = newDueDate;
+    }
+    
+    function changePriority(newPrio) {
+        this.priority = newPrio;
+    }
+
+    for (let project in projectList) {
+        projectList[project].tasks.forEach(obj => {
+            obj.changeTitle = changeTitle;
+            obj.changeDescription = changeDescription;
+            obj.changeDueDate = changeDueDate;
+            obj.changePriority = changePriority
+        })
+    }
+
     
     console.log(projectList)
     console.log(projectTaskList)
