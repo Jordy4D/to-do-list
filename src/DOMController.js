@@ -268,7 +268,7 @@ function renderGUI() {
 
 
 
-const projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [];
+var projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [];
 let projectTaskList = []
 let currentProjectIndex = 0;
 let editTaskIndex
@@ -350,7 +350,7 @@ function renderProjectList() {
             pDeleteBtn.addEventListener('click', function() {
                 deleteProject(pDeleteBtn.id)
                 // renderProjectList()
-                // setStorage();
+                setStorage();
             })
     
             p.appendChild(pDeleteBtn)
@@ -400,13 +400,13 @@ function editTask(task) {
     editTaskDescription.value = `${projectList[currentProjectIndex].tasks[task].description}`
     editTaskDueDate.value = `${projectList[currentProjectIndex].tasks[task].dueDate}`
     editTaskPriority.value = `${projectList[currentProjectIndex].tasks[task].priority}`
-    // setStorage();
+    setStorage();
 }
 
 function deleteTask(index) {
     
     projectList[currentProjectIndex].tasks.splice(index, 1)
-    // setStorage();
+    setStorage();
     renderProjectTasks(currentProjectIndex)
     
 
@@ -428,6 +428,7 @@ function deleteProject(index) {
 }
 
 
+
 // const testProj1 = new Project("Home Chores")
 // testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
 // testProj1.newTask("Mow Again", "Mow the back yard", "6/14/24", "Medium")
@@ -439,6 +440,7 @@ function deleteProject(index) {
 // testProj2.newTask("Walk the Dog", "Bitch needs to calm down", "8/14/24", "None")
 // testProj2.newTask("Code", "Finish this damn To Do List", "7/20/24", "Low")
 // projectList.push(testProj2)
+
 
 
 function DomController() {
@@ -523,7 +525,6 @@ function DomController() {
     editTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
         
-        
         if (editTaskName.value === '' ||
             editTaskDescription.value === '' ||
             editTaskDueDate.value === '' ||
@@ -532,22 +533,20 @@ function DomController() {
                 return
             }
             
-            projectList[currentProjectIndex].tasks[editTaskIndex].changeTitle(editTaskName.value)
-            projectList[currentProjectIndex].tasks[editTaskIndex].changeDescription(editTaskDescription.value)
-            projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
-            projectList[currentProjectIndex].tasks[editTaskIndex].changePriority(editTaskPriority.value)
+        projectList[currentProjectIndex].tasks[editTaskIndex].changeTitle(editTaskName.value)
+        projectList[currentProjectIndex].tasks[editTaskIndex].changeDescription(editTaskDescription.value)
+        projectList[currentProjectIndex].tasks[editTaskIndex].changeDueDate(editTaskDueDate.value)
+        projectList[currentProjectIndex].tasks[editTaskIndex].changePriority(editTaskPriority.value)
             
-            
-            
-            tasksDisplay.innerHTML = '';
-            renderProjectTasks(currentProjectIndex)
-            editTaskFormContainer.classList.remove('edit-task-form-container-show')
-            editTaskFormContainer.classList.add('edit-task-form-container')
-            editTaskForm.classList.add('no-form-display')
-            editTaskForm.classList.remove('form-display')
-            
-            // setStorage();
-            
+        setStorage();
+        tasksDisplay.innerHTML = '';
+        renderProjectTasks(currentProjectIndex)
+        
+        editTaskFormContainer.classList.remove('edit-task-form-container-show')
+        editTaskFormContainer.classList.add('edit-task-form-container')
+        editTaskForm.classList.add('no-form-display')
+        editTaskForm.classList.remove('form-display')
+        
     })
         
     editTaskCloseBtn.addEventListener('click', function() {
@@ -558,9 +557,23 @@ function DomController() {
         
     })
         
-        
+    
+    function newTask(title, description, dueDate, priority) {
+        let t = new Task(title, description, dueDate, priority);
+        this.tasks.push(t);
+        return t;
+    }
 
-        
+    function changeProjectName(newName) {
+        this.name = newName;
+    }
+
+    projectList.forEach(obj => {
+        obj.newTask = newTask;
+        obj.changeName = changeProjectName;
+    })
+  
+
     
     console.log(projectList)
     console.log(projectTaskList)
