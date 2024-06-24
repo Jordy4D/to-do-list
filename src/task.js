@@ -25,6 +25,13 @@ export class Task {
     changePriority(newPrio) {
         this.priority = newPrio;
     }
+
+    changeCompleted() {
+        if (this.complete === false) {
+            this.complete = true
+        } else 
+            this.complete = false
+    }
     
 };
 

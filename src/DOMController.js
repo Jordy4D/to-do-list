@@ -164,7 +164,9 @@ function displayTask(element, index) {
     deleteBtn.classList.add('deleteBtn')
     
     
-    
+    if (element.complete === true) {
+        completedCheck.setAttribute('checked', 'checked')
+    }
     myH4.textContent = `Name: ${element.title}`;
     myP1.textContent = `Details: ${element.description}`;
     myP2.textContent = `Due: ${element.dueDate}`;
@@ -173,6 +175,11 @@ function displayTask(element, index) {
     deleteBtn.textContent = `Delete`
     // deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
     // editBtn.setAttribute("onclick", `editTask(${index})`);
+
+    completedCheck.addEventListener('click', function() {
+        taskCompleted(index - 1);
+        setStorage();
+    })
 
     editBtn.addEventListener('click', function() {
         editTaskFormContainer.classList.add('edit-task-form-container-show')
@@ -195,11 +202,10 @@ function displayTask(element, index) {
         let deleteIndex = index - 1
         deleteTask(deleteIndex)
 
-
-
     })
 
     
+
     // displayArea.appendChild(taskLi)
     tasksDisplay.appendChild(taskLi)
     taskLi.appendChild(completedCheck)
@@ -213,26 +219,26 @@ function displayTask(element, index) {
 
 }
 
-function renderGUI() {
-    const contentContainer = document.getElementById('content')
-    const displayArea = document.getElementById("tasks-container");
-    const tasksHeader = document.createElement('div')
-    const addTaskBtn = document.createElement('button')
+// function renderGUI() {
+//     const contentContainer = document.getElementById('content')
+//     const displayArea = document.getElementById("tasks-container");
+//     const tasksHeader = document.createElement('div')
+//     const addTaskBtn = document.createElement('button')
 
-    tasksHeader.classList.add('tasks-header')
+//     tasksHeader.classList.add('tasks-header')
   
-    // const projectTitle = document.createElement('h2')
-    // tasksHeader.appendChild(projectTitle)
-    addTaskBtn.textContent = '+';
-    addTaskBtn.setAttribute('id', 'new-task-btn')
-    addTaskBtn.setAttribute('onclick', 'togglePopUpTaskForm()')
+//     // const projectTitle = document.createElement('h2')
+//     // tasksHeader.appendChild(projectTitle)
+//     addTaskBtn.textContent = '+';
+//     addTaskBtn.setAttribute('id', 'new-task-btn')
+//     addTaskBtn.setAttribute('onclick', 'togglePopUpTaskForm()')
 
-    contentContainer.appendChild(displayArea)
-    displayArea.appendChild(tasksHeader)
-    tasksHeader.appendChild(addTaskBtn)
+//     contentContainer.appendChild(displayArea)
+//     displayArea.appendChild(tasksHeader)
+//     tasksHeader.appendChild(addTaskBtn)
 
-    return displayArea
-}
+//     return displayArea
+// }
 
 // function renderTasks(project) {
     
@@ -270,9 +276,9 @@ function renderGUI() {
 
 var projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [];
 let projectTaskList = []
-let currentProjectIndex = 0;
+// let currentProjectIndex = 0;
+let currentProjectIndex = localStorage.currentProjectIndex ? JSON.parse(localStorage.currentProjectIndex) : 0;
 let editTaskIndex
-
 
 
 // window.currentProjectIndex = currentProjectIndex;
@@ -314,6 +320,7 @@ const ul = document.createElement('ul')
 
 function setStorage() {
     localStorage.setItem("userProjectList", JSON.stringify(projectList));
+    localStorage.setItem("currentProjectIndex", JSON.stringify(currentProjectIndex))
     console.log('set storage was fired')
 }
 
@@ -343,8 +350,9 @@ function renderProjectList() {
             p.addEventListener('click', function() {
                 currentProjectIndex = p.id
                 console.log(`current project index is ${currentProjectIndex}`)
+                // projectIndex = p.id
                 renderProjectTasks(p.id)
-
+                setStorage();
             })
     
             pDeleteBtn.addEventListener('click', function() {
@@ -373,7 +381,7 @@ function renderProjectTasks(index) {
     if (projectList[currentProjectIndex] !== undefined) {
         addTaskBtn.classList.remove('no-display')
         tasksTitle.innerHTML = '';
-        tasksTitle.innerHTML = `${projectList[currentProjectIndex].name}`
+        tasksTitle.innerHTML = `${projectList[index].name}`
     
         tasksDisplay.innerHTML = '';
     
@@ -382,20 +390,22 @@ function renderProjectTasks(index) {
     
             taskI++
         })
-    } else if (projectList && projectList.length) {
-        currentProjectIndex = 0
-        addTaskBtn.classList.remove('no-display')
-        tasksTitle.innerHTML = '';
-        tasksTitle.innerHTML = `${projectList[currentProjectIndex].name}`
+    }
+    //  else if (projectList && projectList.length) {
+    //     currentProjectIndex = 0
+    //     addTaskBtn.classList.remove('no-display')
+    //     tasksTitle.innerHTML = '';
+    //     tasksTitle.innerHTML = `${projectList[currentProjectIndex].name}`
     
-        tasksDisplay.innerHTML = '';
+    //     tasksDisplay.innerHTML = '';
     
-        projectList[currentProjectIndex].tasks.forEach((element) => {
-            displayTask(element, taskI);
+    //     projectList[currentProjectIndex].tasks.forEach((element) => {
+    //         displayTask(element, taskI);
     
-            taskI++
-        })
-    } else {
+    //         taskI++
+    //     })
+    // } 
+    else {
         tasksTitle.innerHTML = '';
         tasksDisplay.innerHTML = '';
         currentProjectIndex = 0;
@@ -405,6 +415,9 @@ function renderProjectTasks(index) {
     }
 }
 
+function taskCompleted(index) {
+    projectList[currentProjectIndex].tasks[index].changeCompleted()
+}
 
 function editTask(task) {
     console.log(`edit task function firing ${task}`)
@@ -462,7 +475,11 @@ function DomController() {
     // } else {
         //     setUserProject();
     // }
+
     
+    
+   
+
     let currentTaskList = projectTaskList
     
     
@@ -569,6 +586,8 @@ function DomController() {
         editTaskForm.classList.remove('form-display')
         
     })
+
+
         
     
     function newTask(title, description, dueDate, priority) {
@@ -603,12 +622,20 @@ function DomController() {
         this.priority = newPrio;
     }
 
+    function changeCompleted() {
+        if (this.complete === false) {
+            this.complete = true
+        } else 
+            this.complete = false
+    }
+
     for (let project in projectList) {
         projectList[project].tasks.forEach(obj => {
             obj.changeTitle = changeTitle;
             obj.changeDescription = changeDescription;
             obj.changeDueDate = changeDueDate;
-            obj.changePriority = changePriority
+            obj.changePriority = changePriority;
+            obj.changeCompleted = changeCompleted;
         })
     }
 
