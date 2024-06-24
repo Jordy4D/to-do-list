@@ -382,13 +382,26 @@ function renderProjectTasks(index) {
     
             taskI++
         })
+    } else if (projectList && projectList.length) {
+        currentProjectIndex = 0
+        addTaskBtn.classList.remove('no-display')
+        tasksTitle.innerHTML = '';
+        tasksTitle.innerHTML = `${projectList[currentProjectIndex].name}`
+    
+        tasksDisplay.innerHTML = '';
+    
+        projectList[currentProjectIndex].tasks.forEach((element) => {
+            displayTask(element, taskI);
+    
+            taskI++
+        })
     } else {
         tasksTitle.innerHTML = '';
         tasksDisplay.innerHTML = '';
         currentProjectIndex = 0;
         tasksTitle.innerHTML = 'Start a New Project To Add To Do Items';
         addTaskBtn.classList.add('no-display')
-
+        
     }
 }
 
@@ -470,7 +483,7 @@ function DomController() {
         
         setStorage();
         renderProjectList();
-        renderProjectTasks();
+        // renderProjectTasks();
     })
     
     
