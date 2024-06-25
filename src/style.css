@@ -112,9 +112,17 @@ header {
     margin-bottom: 20px;
 }
 
+#add-task {
+    margin: 12px 0;
+}
+
 #tasks-display {
     display: grid;
     gap: 10px;
+}
+
+.taskExpand {
+    height:200px;
 }
 
 .task {
@@ -138,9 +146,13 @@ header {
 .task button {
     border: none;
     margin: 0 5px;
+    height: 30px!important;
 }
 
-
+input[type="checkbox"] {
+    align-self: center;
+    height:20px;
+}
 
 .deleteBtn
 
@@ -150,7 +162,10 @@ header {
 .task .task-priority,
 .task .editBtn,
 .task .deleteBtn {
+    display: flex;
+    justify-content: center;
     align-content: center;
+    align-items: center;
     height:40px;
 
 }
@@ -161,7 +176,8 @@ header {
 
 .task-name {
     grid-column: 2 / 3;
-
+    justify-content: center;
+    align-content: center;
 }
 
 .task-description {

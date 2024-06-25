@@ -155,6 +155,7 @@ function displayTask(element, index) {
     taskLi.classList.add("task")
     taskLi.setAttribute("data-index", `${index}`)
     completedCheck.setAttribute('type', 'checkbox')
+    completedCheck.setAttribute('class', "completedCheck")
     myH4.classList.add("task-name")
     myP1.classList.add("task-description")
     myP2.classList.add("task-dueDate")
@@ -167,15 +168,17 @@ function displayTask(element, index) {
     if (element.complete === true) {
         completedCheck.setAttribute('checked', 'checked')
     }
-    myH4.textContent = `Name: ${element.title}`;
-    myP1.textContent = `Details: ${element.description}`;
+    myH4.textContent = `${element.title}`;
+    myP1.textContent = `${element.description}`;
     myP2.textContent = `Due: ${element.dueDate}`;
-    myP3.textContent = `Priority: ${element.priority}`;
+    myP3.textContent = `${element.priority}`;
     editBtn.textContent = `Edit`
     deleteBtn.textContent = `Delete`
     // deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
     // editBtn.setAttribute("onclick", `editTask(${index})`);
 
+ 
+    
     completedCheck.addEventListener('click', function() {
         taskCompleted(index - 1);
         setStorage();
@@ -203,7 +206,17 @@ function displayTask(element, index) {
         deleteTask(deleteIndex)
 
     })
+    
+    
+    myP1.addEventListener('click', () => {
+        // const wasExpanded = taskLi.classList.contains('taskExpand')
 
+        if (taskLi.classList.contains('taskExpand')) {
+            taskLi.classList.remove('taskExpand')
+        } else {
+            taskLi.classList.add('taskExpand')
+        }
+    })
     
 
     // displayArea.appendChild(taskLi)
@@ -219,64 +232,57 @@ function displayTask(element, index) {
 
 }
 
-// function renderGUI() {
-//     const contentContainer = document.getElementById('content')
-//     const displayArea = document.getElementById("tasks-container");
-//     const tasksHeader = document.createElement('div')
-//     const addTaskBtn = document.createElement('button')
-
-//     tasksHeader.classList.add('tasks-header')
-  
-//     // const projectTitle = document.createElement('h2')
-//     // tasksHeader.appendChild(projectTitle)
-//     addTaskBtn.textContent = '+';
-//     addTaskBtn.setAttribute('id', 'new-task-btn')
-//     addTaskBtn.setAttribute('onclick', 'togglePopUpTaskForm()')
-
-//     contentContainer.appendChild(displayArea)
-//     displayArea.appendChild(tasksHeader)
-//     tasksHeader.appendChild(addTaskBtn)
-
-//     return displayArea
-// }
-
-// function renderTasks(project) {
-    
-//     const displayArea = document.getElementById("tasks-container");
-//     const tasksHeader = document.createElement('div')
-//     const addTaskBtn = document.createElement('button')
-//     const toDoTitle = document.createElement('h3')
-//     const taskRow = document.createElement('div')
-    
-//     displayArea.innerHTML = '';
-    
-
-//     taskRow.classList.add('taskRow') 
-
-    
-//     //change this later
-//     // myArticle.appendChild(toDoTitle)
-
-
-//     let index = 0;
-//     tasks.forEach(element => {
-//         displayTask(index, element)
-//         index++
-//     });
-
-//     // myArticle.appendChild(myH4)
-//     // myArticle.appendChild(myP1)
-//     // myArticle.appendChild(myP2)
-//     // myArticle.appendChild(myP3)
-//     // displayArea.appendChild(myArticle)
-
-// }
 
 
 
-var projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [];
+
+// const testProj1 = new Project("Home Chores")
+// testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
+// testProj1.newTask("Mow Again", "Mow the back yard", "6/14/24", "Medium")
+// testProj1.newTask("Groceries", "Get this week's groceries", "6/20/24", "High")
+// projectList.push(testProj1)
+
+// const testProj2 = new Project("Fun Chores")
+// testProj2.newTask("Fart", "Make her day special", "7/13/25", "High")
+// testProj2.newTask("Walk the Dog", "Bitch needs to calm down", "8/14/24", "None")
+// testProj2.newTask("Code", "Finish this damn To Do List", "7/20/24", "Low")
+// projectList.push(testProj2)
+
+
+
+
+
+var projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [
+    {
+        name: "Home Chores",
+        dataName: "home chores",
+        tasks: [
+            {
+                title: "Mow",
+                description: "Mow the front yard",
+                dueDate: "2024-06-25",
+                priority: "Medium",
+                complete: false
+            },
+            {
+                title: "Mow Again",
+                description: "Mow the back yard",
+                dueDate: "2024-06-26",
+                priority: "Medium",
+                complete: false
+
+            },
+            {
+                title: "Groceries",
+                description: "Get this week's groceries",
+                dueDate: "2024-06-28",
+                priority: "High",
+                complete: false
+            },
+        ]
+    }
+];
 let projectTaskList = []
-// let currentProjectIndex = 0;
 let currentProjectIndex = localStorage.currentProjectIndex ? JSON.parse(localStorage.currentProjectIndex) : 0;
 let editTaskIndex
 
@@ -388,6 +394,8 @@ function renderProjectTasks(index) {
         projectList[index].tasks.forEach((element) => {
             displayTask(element, taskI);
     
+
+
             taskI++
         })
     }
@@ -455,17 +463,7 @@ function deleteProject(index) {
 
 
 
-// const testProj1 = new Project("Home Chores")
-// testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
-// testProj1.newTask("Mow Again", "Mow the back yard", "6/14/24", "Medium")
-// testProj1.newTask("Groceries", "Get this week's groceries", "6/20/24", "High")
-// projectList.push(testProj1)
 
-// const testProj2 = new Project("Fun Chores")
-// testProj2.newTask("Fart", "Make her day special", "7/13/25", "High")
-// testProj2.newTask("Walk the Dog", "Bitch needs to calm down", "8/14/24", "None")
-// testProj2.newTask("Code", "Finish this damn To Do List", "7/20/24", "Low")
-// projectList.push(testProj2)
 
 
 
@@ -588,8 +586,27 @@ function DomController() {
     })
 
 
+    // projectList[index].tasks.forEach((task) => {
+    //     const taskLi = task.querySelector('.task')
+
+    //     task.addEventListener('click', (event) => {
+    //         const wasActive = task.classList.contains('active')
+            
+    //         projectList[index].tasks.forEach((task) => {
+    //             task.classList.remove('active');
+    //         })
+    //         if (!wasActive) {
+    //             task.classList.add('active')
+    //         }
+            
+    //     })
+
+    // })
         
     
+    
+
+
     function newTask(title, description, dueDate, priority) {
         let t = new Task(title, description, dueDate, priority);
         this.tasks.push(t);
