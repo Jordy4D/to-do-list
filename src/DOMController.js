@@ -604,7 +604,9 @@ function DomController() {
             projectList[currentProjectIndex].changeName(newProjName)
 
         }
+        setStorage();
         renderProjectTasks(currentProjectIndex);
+        renderProjectList();
     })
     
     editTaskSubmit.addEventListener('click', function(event) {
