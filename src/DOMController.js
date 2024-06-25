@@ -167,6 +167,7 @@ function displayTask(element, index) {
     
     if (element.complete === true) {
         completedCheck.setAttribute('checked', 'checked')
+        taskLi.classList.add('completed')
     }
     myH4.textContent = `${element.title}`;
     myP1.textContent = `${element.description}`;
@@ -177,10 +178,32 @@ function displayTask(element, index) {
     // deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
     // editBtn.setAttribute("onclick", `editTask(${index})`);
 
- 
     
+    // completedCheck.addEventListener('click', function() {
+    //     taskCompleted(index - 1);
+    //     setStorage();
+
+
+    //     console.log(projectList)
+    //     console.log(projectList[currentProjectIndex])
+
+    // })
+
+
+
     completedCheck.addEventListener('click', function() {
-        taskCompleted(index - 1);
+        // const checkIndex = index - 1
+        
+        if (taskLi.classList.contains('completed')) {
+            taskLi.classList.remove('completed')
+            taskRestored(element.taskIndex);
+
+            
+        } else {
+            taskLi.classList.add('completed')
+            taskCompleted(element.taskIndex);
+        }
+        
         setStorage();
     })
 
@@ -279,7 +302,8 @@ var projectList = localStorage.userProjectList ? JSON.parse(localStorage.userPro
                 priority: "High",
                 complete: false
             },
-        ]
+        ],
+        completedTasks: []
     }
 ];
 let projectTaskList = []
@@ -381,10 +405,11 @@ function renderProjectList() {
 
 
 function renderProjectTasks(index) {
-    let taskI = 0;
     console.log(currentProjectIndex)
 
     if (projectList[currentProjectIndex] !== undefined) {
+        let taskI = 0;
+        let completedTaskI = 0;
         addTaskBtn.classList.remove('no-display')
         tasksTitle.innerHTML = '';
         tasksTitle.innerHTML = `${projectList[index].name}`
@@ -392,28 +417,22 @@ function renderProjectTasks(index) {
         tasksDisplay.innerHTML = '';
     
         projectList[index].tasks.forEach((element) => {
+
             displayTask(element, taskI);
-    
-
-
+            element.taskIndex = taskI;
             taskI++
+
         })
-    }
-    //  else if (projectList && projectList.length) {
-    //     currentProjectIndex = 0
-    //     addTaskBtn.classList.remove('no-display')
-    //     tasksTitle.innerHTML = '';
-    //     tasksTitle.innerHTML = `${projectList[currentProjectIndex].name}`
-    
-    //     tasksDisplay.innerHTML = '';
-    
-    //     projectList[currentProjectIndex].tasks.forEach((element) => {
-    //         displayTask(element, taskI);
-    
-    //         taskI++
-    //     })
-    // } 
-    else {
+        projectList[index].completedTasks.forEach((element) => {
+
+            displayTask(element, completedTaskI);
+            element.taskIndex = completedTaskI;
+            completedTaskI++
+
+  
+        })
+
+    } else {
         tasksTitle.innerHTML = '';
         tasksDisplay.innerHTML = '';
         currentProjectIndex = 0;
@@ -423,9 +442,37 @@ function renderProjectTasks(index) {
     }
 }
 
+// function taskCompleted(index) {
+//     projectList[currentProjectIndex].tasks[index].changeCompleted()
+// }
+
 function taskCompleted(index) {
     projectList[currentProjectIndex].tasks[index].changeCompleted()
+    projectList[currentProjectIndex].completedTasks.push(projectList[currentProjectIndex].tasks[index])
+    
+    projectList[currentProjectIndex].tasks.splice(index, 1)
+    setStorage();
+    
+    console.log(projectList)
+    console.log(projectList[currentProjectIndex])
+    tasksDisplay.innerHTML = '';
+    renderProjectTasks(currentProjectIndex)
 }
+
+function taskRestored(index) {
+    projectList[currentProjectIndex].completedTasks[index].changeCompleted()
+    projectList[currentProjectIndex].tasks.push(projectList[currentProjectIndex].completedTasks[index])
+    
+    projectList[currentProjectIndex].completedTasks.splice(index, 1)
+    setStorage();
+
+    console.log(projectList)
+    console.log(projectList[currentProjectIndex])
+    tasksDisplay.innerHTML = '';
+    renderProjectTasks(currentProjectIndex)
+}
+
+
 
 function editTask(task) {
     console.log(`edit task function firing ${task}`)
@@ -548,7 +595,17 @@ function DomController() {
         
     })
     
-    
+    tasksTitle.addEventListener('click', function() {
+        console.log('project title click')
+        let newProjName = prompt('rename your project', projectList[currentProjectIndex].name)
+        if (newProjName === null) {
+            return
+        } else {
+            projectList[currentProjectIndex].changeName(newProjName)
+
+        }
+        renderProjectTasks(currentProjectIndex);
+    })
     
     editTaskSubmit.addEventListener('click', function(event) {
         event.preventDefault();
@@ -654,11 +711,18 @@ function DomController() {
             obj.changePriority = changePriority;
             obj.changeCompleted = changeCompleted;
         })
+        projectList[project].completedTasks.forEach(obj => {
+            obj.changeTitle = changeTitle;
+            obj.changeDescription = changeDescription;
+            obj.changeDueDate = changeDueDate;
+            obj.changePriority = changePriority;
+            obj.changeCompleted = changeCompleted;
+        })
     }
 
     
     console.log(projectList)
-    console.log(projectTaskList)
+    console.log(projectList[currentProjectIndex])
         
     renderProjectList();
     renderProjectTasks(currentProjectIndex);

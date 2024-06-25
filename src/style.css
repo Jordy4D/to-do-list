@@ -149,6 +149,10 @@ header {
     height: 30px!important;
 }
 
+#tasks-title:hover {
+    cursor: pointer;
+}
+
 input[type="checkbox"] {
     align-self: center;
     height:20px;

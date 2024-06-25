@@ -8,6 +8,7 @@ export class Project {
         this.name = name;
         this.dataName = name.toLowerCase();
         this.tasks = [];
+        this.completedTasks = [];
     }
 
     newTask(title, description, dueDate, priority) {

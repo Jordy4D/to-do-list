@@ -8,6 +8,7 @@ export class Task {
         this.dueDate = dueDate;
         this.priority = priority;
         this.complete = false;
+        this.taskIndex;
     }
     
     changeTitle(newTitle) {
