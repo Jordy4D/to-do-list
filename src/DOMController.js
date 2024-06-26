@@ -4,6 +4,10 @@ import * as tasksController from "./APPController.js"
 import {Project} from "./project.js"
 import { Task } from "./task.js"
 
+import TrashCan from './assets/trash-can-outline.svg'
+import EditBtn from './assets/square-edit-outline.svg'
+import EditTitle from './assets/rename.svg'
+
 Object.assign(global, projectsController)
 Object.assign(global, tasksController)
 
@@ -149,8 +153,8 @@ function displayTask(element, index) {
     const myP1 = document.createElement('p')
     const myP2 = document.createElement('p')
     const myP3 = document.createElement('p')
-    const editBtn = document.createElement('button')
-    const deleteBtn = document.createElement('button')
+    const editBtn = document.createElement('img')
+    const deleteBtn = document.createElement('img')
     
     taskLi.classList.add("task")
     taskLi.setAttribute("data-index", `${index}`)
@@ -173,8 +177,8 @@ function displayTask(element, index) {
     myP1.textContent = `${element.description}`;
     myP2.textContent = `Due: ${element.dueDate}`;
     myP3.textContent = `${element.priority}`;
-    editBtn.textContent = `Edit`
-    deleteBtn.textContent = `Delete`
+    editBtn.src = EditBtn
+    deleteBtn.src = TrashCan
     // deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
     // editBtn.setAttribute("onclick", `editTask(${index})`);
 
@@ -344,6 +348,8 @@ const newProjectName = document.getElementById('new-project')
 const newProjectSubmit = document.getElementById('new-project-init-input')
 
 const tasksTitle = document.getElementById('tasks-title')
+const titleEditIcon = document.getElementById('title-edit-icon')
+const tasksTitleCombo = document.getElementById('task-title-icon-combo')
 const tasksDisplay = document.getElementById('tasks-display') 
 const addTaskBtn = document.getElementById('add-task')
 const ul = document.createElement('ul')
@@ -368,9 +374,10 @@ function renderProjectList() {
         projectListDisplay.innerHTML = '';
         projectList.forEach((element) => {
             const p = document.createElement('li');
-            const pDeleteBtn = document.createElement('button')
+            const pDeleteBtn = document.createElement('img')
+            pDeleteBtn.setAttribute('class', `delete-project-btn`)
             pDeleteBtn.setAttribute('id', `${i}`)
-            pDeleteBtn.textContent = `Delete`
+            pDeleteBtn.src = TrashCan
             p.setAttribute('class', 'project-list-item')
             p.setAttribute('id', `${i}`)
             p.textContent = element.name;
@@ -413,6 +420,7 @@ function renderProjectTasks(index) {
         addTaskBtn.classList.remove('no-display')
         tasksTitle.innerHTML = '';
         tasksTitle.innerHTML = `${projectList[index].name}`
+        titleEditIcon.src = EditTitle
     
         tasksDisplay.innerHTML = '';
     
@@ -595,7 +603,7 @@ function DomController() {
         
     })
     
-    tasksTitle.addEventListener('click', function() {
+    tasksTitleCombo.addEventListener('click', function() {
         console.log('project title click')
         let newProjName = prompt('rename your project', projectList[currentProjectIndex].name)
         if (newProjName === null) {

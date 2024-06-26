@@ -15,14 +15,14 @@
                 <h2 class="sidebar-header"></h2>
                 <label for="new-project">Start A New Project</label>
                 <div id="project-init-field">
-                    <input id="new-project" type="text" placeholder="New Project">
+                    <input id="new-project" type="text" placeholder="New Project" name="new-project">
                     <input type="submit" value="+" id="new-project-init-input">
                 </div>
                 <ul class="project-list" id="project-list" ></ul>
             </div>
             <div id="tasks-container">
                 <div class="tasks-header">
-                    <h2 class="tasks-title" id="tasks-title"></h2>
+                    <span id="task-title-icon-combo"><h2 class="tasks-title" id="tasks-title"></h2><img id="title-edit-icon"></span>
                     <button id="add-task">Add Task</button>
                 </div>
                 <ul id="tasks-display"></ul>

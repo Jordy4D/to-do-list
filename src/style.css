@@ -3,6 +3,7 @@
     margin:0;
     font-family: Arial, Helvetica, sans-serif;
     /* background-color: slategrey; */
+    --completed-fadeout-color: rgba(0, 0, 0, 0.3);
 }
 
 .container {
@@ -37,9 +38,37 @@ header {
 .sidebar {
     grid-row: 1 / 4;
     grid-column: 1 / 2;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    padding: 0 5px;
+    gap: 12px;
     background-color: darkgrey;
     min-width: 200px;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+}
+
+.project-list li {
+    padding: 0 5px; 
+    background-color: white;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    min-height: 30px;
+    align-items: center;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+}
+
+.project-list li:hover {
+    background-color: orange;
+    cursor: pointer;
+ 
 }
 
 .project-init-field {
@@ -53,12 +82,18 @@ header {
     min-height: 200px;
 }
 
+.delete-project-btn {
+    height: 1.5em;
+}
+
 #new-project {
     font-size: 20px;
     width: 75%;
-    height: 36px;
-    border-radius: 8px;
+    height: 30px;
+    border-radius: 5px;
     border: none;
+    font-size: 18px;
+    padding-left: 5px;
 }
 
 #project-init-field {
@@ -68,8 +103,9 @@ header {
 }
 
 #new-project-init-input {
-    font-size: 2em;
+    font-size: 1em;
     width: 20%;
+    height: 30px;
 }
 
 #new-project-init-input:hover {
@@ -110,6 +146,19 @@ header {
 .tasks-header button {
     width: 100px;
     margin-bottom: 20px;
+}
+
+#task-title-icon-combo {
+    display: flex;
+}
+
+#title-edit-icon {
+    height: 1.2em;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-bottom: 2px;
+    align-self: end;
+    filter: invert(21%) sepia(9%) saturate(16%) hue-rotate(10deg) brightness(97%) contrast(85%);
 }
 
 #add-task {
@@ -158,8 +207,6 @@ input[type="checkbox"] {
     height:20px;
 }
 
-.deleteBtn
-
 .task .task-name,
 .task .task-description,
 .task .task-dueDate,
@@ -171,7 +218,14 @@ input[type="checkbox"] {
     align-content: center;
     align-items: center;
     height:40px;
+}
 
+.completed,
+.completed button {
+    background: var(--completed-fadeout-color);
+    background-color: var(--completed-fadeout-color);
+    color: var(--completed-fadeout-color);
+    border-color: var(--completed-fadeout-color);
 }
 
 .task-completed {
@@ -179,46 +233,53 @@ input[type="checkbox"] {
 }
 
 .task-name {
-    grid-column: 2 / 3;
+    grid-column: 2 / 4;
     justify-content: center;
     align-content: center;
 }
 
 .task-description {
-    grid-column: 3 / 6;
+    grid-column: 4 / 7;
 
 }
 
 .task-dueDate {
-    grid-column: 6 / 7;
+    grid-column: 7 / 8;
 
 }
 
 .task-priority {
-    grid-column: 7 / 9;
+    grid-column: 8 / 10;
 
 }
 
 .editBtn {
     align-self: center;
-    height: 75%!important;
+    justify-self: end;
+    max-height: 2.5em!important;
     border-radius: 5px;
-    grid-column: 9;
+    grid-column: 10;
+    margin: 5px;
 }
 
 .deleteBtn {
     align-self: center;
-    height: 75%!important;
+    max-height: 2.5em!important;
     border-radius: 5px;
-    grid-column: 10;
+    grid-column: 11;
     background-color: red;
+}
+
+.deleteBtn img {
+    height: 50%!important;
 }
 
 .deleteBtn:hover {
     background-color: crimson;
 }
 
-.btn-submit { 
+.btn-submit,
+.edit-task-submit { 
     padding: 12px 24px; 
     font-size: 18px; 
     background-color: green; 
@@ -229,7 +290,8 @@ input[type="checkbox"] {
     transition: background-color 0.3s ease; 
 } 
 
-.btn-submit:hover { 
+.btn-submit:hover,
+.edit-task-submit:hover { 
     background-color: #4caf50; 
     cursor: pointer;
 } 
@@ -283,7 +345,9 @@ input[type="checkbox"] {
 } 
 
 .btn-submit, 
-.btn-close-popup { 
+.btn-close-popup,
+.edit-btn-close-popup,
+.edit-task-submit { 
     padding: 12px 24px; 
     border: none; 
     border-radius: 8px; 
@@ -296,14 +360,17 @@ input[type="checkbox"] {
     color: #fff; 
 } 
 
-.btn-close-popup { 
+.btn-close-popup,
+.edit-btn-close-popup { 
     margin-top: 12px; 
     background-color: #e74c3c; 
     color: #fff; 
 } 
 
 .btn-submit:hover, 
-.btn-close-popup:hover { 
+.btn-close-popup:hover,
+.edit-btn-close-popup:hover,
+.edit-task-submit:hover {
     background-color: #4caf50;
     cursor: pointer; 
 } 
@@ -381,28 +448,3 @@ input[type="checkbox"] {
     animation: fadeInUp 0.5s ease-out forwards;
 } 
 
-.project-list {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-
-}
-
-.project-list li {
-    padding: 0 5px; 
-    margin: 0 5px;
-    background-color: white;
-    border-radius: 5px;
-    display: flex;
-    justify-content: space-between;
-    min-height: 30px;
-    align-items: center;
-    box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
-
-}
-
-.project-list li:hover {
-    background-color: orange;
-    cursor: pointer;
- 
-}
