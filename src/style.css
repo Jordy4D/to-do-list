@@ -220,12 +220,16 @@ input[type="checkbox"] {
     height:40px;
 }
 
-.completed,
-.completed button {
+.completed {
     background: var(--completed-fadeout-color);
     background-color: var(--completed-fadeout-color);
     color: var(--completed-fadeout-color);
     border-color: var(--completed-fadeout-color);
+}
+
+.completed img {
+    filter: invert(21%) sepia(9%) saturate(16%) hue-rotate(10deg) brightness(97%) contrast(85%);
+
 }
 
 .task-completed {
@@ -411,6 +415,11 @@ input[type="checkbox"] {
 .form-display {
     display: flex; 
     flex-direction: column; 
+}
+
+.noClick {
+    pointer-events: none;
+    cursor: none;
 }
 
 /* .new-task-form-container {

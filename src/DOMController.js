@@ -228,10 +228,15 @@ function displayTask(element, index) {
 
     deleteBtn.addEventListener('click', function() {
         // console.log(`delete btn click on task index ${index-1}`)
+        let deleteConfirm = confirm('Are you sure you want to delete this task?')
         
-        let deleteIndex = index - 1
-        deleteTask(deleteIndex)
-
+        if (deleteConfirm === false) {
+            return
+        } else {
+            let deleteIndex = index - 1
+            deleteTask(deleteIndex)
+        }
+        
     })
     
     
@@ -393,9 +398,16 @@ function renderProjectList() {
             })
     
             pDeleteBtn.addEventListener('click', function() {
-                deleteProject(pDeleteBtn.id)
-                // renderProjectList()
-                setStorage();
+                let deleteConfirm = confirm('Are you sure you want to delete this task?')
+        
+                if (deleteConfirm === false) {
+                    return
+                } else {
+                    deleteProject(pDeleteBtn.id)
+                    // renderProjectList()
+                }
+                
+                
             })
     
             p.appendChild(pDeleteBtn)
@@ -418,6 +430,8 @@ function renderProjectTasks(index) {
         let taskI = 0;
         let completedTaskI = 0;
         addTaskBtn.classList.remove('no-display')
+        titleEditIcon.classList.remove('no-display')
+        tasksTitle.classList.remove('noClick')
         tasksTitle.innerHTML = '';
         tasksTitle.innerHTML = `${projectList[index].name}`
         titleEditIcon.src = EditTitle
@@ -445,7 +459,10 @@ function renderProjectTasks(index) {
         tasksDisplay.innerHTML = '';
         currentProjectIndex = 0;
         tasksTitle.innerHTML = 'Start a New Project To Add To Do Items';
+        titleEditIcon.classList.add('no-display')
         addTaskBtn.classList.add('no-display')
+        tasksTitle.classList.add('noClick')
+
         
     }
 }
