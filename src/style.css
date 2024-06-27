@@ -7,6 +7,7 @@
     --default-box-shadow:  rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     --hover-box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
     --default-button-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    --delete-color-hover: brightness(0) saturate(100%) invert(19%) sepia(91%) saturate(3192%) hue-rotate(346deg) brightness(87%) contrast(101%);
 }  
 
 .container {
@@ -69,7 +70,9 @@ header {
 }
 
 .project-list li:hover {
-    background-color: orange;
+    transition: background-color 0.2s ease, color 0.2s ease; 
+
+    background-color: lightgray;
     cursor: pointer;
  
 }
@@ -87,6 +90,10 @@ header {
 
 .delete-project-btn {
     height: 1.5em;
+}
+
+.delete-project-btn:hover {
+    filter: var(--delete-color-hover)
 }
 
 #new-project {
@@ -197,6 +204,7 @@ header {
 }
 
 .task:hover {
+    transition: background-color 0.2s ease, color 0.2s ease; 
     background-color: lightgray;
     box-shadow: var(--hover-box-shadow);
     cursor: pointer;
@@ -233,12 +241,6 @@ input[type="checkbox"] {
     height:40px;
 }
 
-.completed {
-    background: var(--completed-fadeout-color);
-    background-color: var(--completed-fadeout-color);
-    color: var(--completed-fadeout-color);
-    border-color: var(--completed-fadeout-color);
-}
 
 .completed img {
     filter: invert(21%) sepia(9%) saturate(16%) hue-rotate(10deg) brightness(97%) contrast(85%);
@@ -285,16 +287,26 @@ input[type="checkbox"] {
     max-height: 2.5em!important;
     border-radius: 5px;
     grid-column: 11;
-    background-color: red;
+    /* background-color: red; */
 }
+
+
 
 .deleteBtn img {
     height: 50%!important;
 }
 
 .deleteBtn:hover {
-    background-color: crimson;
+    filter: var(--delete-color-hover);
 }
+
+.completed {
+    background: var(--completed-fadeout-color);
+    background-color: var(--completed-fadeout-color);
+    color: var(--completed-fadeout-color);
+    border-color: var(--completed-fadeout-color);
+}
+
 
 .btn-submit,
 .edit-task-submit { 
