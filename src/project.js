@@ -17,6 +17,10 @@ export class Project {
         return t;
     }
 
+    changeProjectName(newName) {
+        this.name = newName;
+    }
+
     getTasks() {
         return this.tasks;
         

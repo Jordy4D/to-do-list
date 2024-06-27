@@ -620,13 +620,13 @@ function DomController() {
         
     })
     
-    tasksTitleCombo.addEventListener('click', function() {
+    titleEditIcon.addEventListener('click', function() {
         console.log('project title click')
         let newProjName = prompt('rename your project', projectList[currentProjectIndex].name)
         if (newProjName === null) {
             return
         } else {
-            projectList[currentProjectIndex].changeName(newProjName)
+            projectList[currentProjectIndex].changeProjectName(newProjName)
 
         }
         setStorage();
@@ -701,12 +701,8 @@ function DomController() {
         this.name = newName;
     }
 
-    projectList.forEach(obj => {
-        obj.newTask = newTask;
-        obj.changeName = changeProjectName;
-    })
-  
-
+    
+    
     function changeTitle(newTitle) {
         this.title = newTitle;
     }
@@ -717,19 +713,24 @@ function DomController() {
     
     function changeDueDate(newDueDate) {
         this.dueDate = newDueDate;
-    }
-    
-    function changePriority(newPrio) {
+        }
+        
+        function changePriority(newPrio) {
         this.priority = newPrio;
-    }
-
+        }
+        
     function changeCompleted() {
         if (this.complete === false) {
             this.complete = true
-        } else 
+            } else 
             this.complete = false
-    }
+            }
 
+    projectList.forEach(obj => {
+        obj.newTask = newTask;
+        obj.changeProjectName = changeProjectName;
+    })
+            
     for (let project in projectList) {
         projectList[project].tasks.forEach(obj => {
             obj.changeTitle = changeTitle;
