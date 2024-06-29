@@ -1,6 +1,3 @@
-import * as projectsController from "./APPController.js"
-import * as tasksController from "./APPController.js"
-
 import {Project} from "./project.js"
 import { Task } from "./task.js"
 
@@ -8,142 +5,6 @@ import TrashCan from './assets/trash-can-outline.svg'
 import EditBtn from './assets/square-edit-outline.svg'
 import EditTitle from './assets/rename.svg'
 
-Object.assign(global, projectsController)
-Object.assign(global, tasksController)
-
-// import {Project} from "./project.js"
-
-//pop up form for new task
-
-// function taskPopUpForm() {
-//     const tasksContainer = document.getElementById('tasks-container')
-//     const newTaskOverlay = document.createElement('div')
-//     const newTaskPopupBox = document.createElement('div')
-//     const newTaskForm = document.createElement('form')
-//     newTaskOverlay.setAttribute('id', 'newTaskOverlay')
-//     newTaskOverlay.setAttribute('class', 'newTaskOverlay-container')
-//     newTaskPopupBox.setAttribute('class', 'newTaskPopupBox')
-//     newTaskForm.setAttribute('class', 'newTaskForm')
-
-
-
-
-
-//     const taskNameInput = document.createElement('input')
-//     taskNameInput.setAttribute('class', 'form-input')
-//     taskNameInput.setAttribute('type', 'text')
-//     taskNameInput.setAttribute('placeholder', 'Task Name')
-//     taskNameInput.setAttribute('id', 'name')
-//     taskNameInput.setAttribute('name', 'name')
-//     taskNameInput.required = true;
-
-//     const taskDescInput = document.createElement('input')
-//     taskDescInput.setAttribute('class', 'form-input')
-//     taskDescInput.setAttribute('type', 'text')
-//     taskDescInput.setAttribute('placeholder', 'Task Description')
-//     taskDescInput.setAttribute('id', 'description')
-//     taskDescInput.setAttribute('name', 'description')
-//     taskDescInput.required = true;
-    
-//     const taskDueDateInput = document.createElement('input')
-//     taskDueDateInput.setAttribute('class', 'form-input')
-//     taskDueDateInput.setAttribute('type', 'date')
-//     taskDueDateInput.setAttribute('placeholder', 'Due Date')
-//     taskDueDateInput.setAttribute('id', 'dueDate')
-//     taskDueDateInput.setAttribute('name', 'dueDate')
-//     taskDueDateInput.required = true;
-    
-//     const taskPriorityDataInput = document.createElement('input') 
-//     taskPriorityDataInput.setAttribute('list', 'priority')
-
-//     const taskPriorityDatalist = document.createElement('datalist')
-//     taskPriorityDatalist.setAttribute('class', 'form-input')
-//     taskPriorityDatalist.setAttribute('placeholder', 'Priority')
-//     taskPriorityDatalist.setAttribute('id', 'priority')
-//     taskPriorityDatalist.setAttribute('name', 'priority')
-
-//     const taskPriorityOptionNone = document.createElement('option')
-//     taskPriorityOptionNone.value = 'None'
-//     const taskPriorityOptionLow = document.createElement('option')
-//     taskPriorityOptionLow.value = 'Low'
-//     const taskPriorityOptionMedium = document.createElement('option')
-//     taskPriorityOptionMedium.value = 'Medium'
-//     const taskPriorityOptionHigh = document.createElement('option')
-//     taskPriorityOptionHigh.value = 'High'  
-    
-
-    
-//     const taskNameLabel = document.createElement('label')
-//     taskNameLabel.textContent = "Task Name"
-//     taskNameLabel.setAttribute('class', 'form-label')
-//     taskNameLabel.setAttribute('for', 'name')
-    
-//     const taskDescLabel = document.createElement('label')
-//     taskDescLabel.textContent = "Description"
-//     taskDescLabel.setAttribute('class', 'form-label')
-//     taskDescLabel.setAttribute('for', 'description')
-    
-//     const taskDueDateLabel = document.createElement('label')
-//     taskDueDateLabel.textContent = "Due Date"
-//     taskDueDateLabel.setAttribute('class', 'form-label')
-//     taskDueDateLabel.setAttribute('for', 'dueDate')
-    
-//     const taskPriorityLabel = document.createElement('label')
-//     taskPriorityLabel.textContent = "Priority"
-//     taskPriorityLabel.setAttribute('class', 'form-label')
-//     taskPriorityLabel.setAttribute('for', 'priority')    
-   
-//     const newTaskSubmit = document.createElement('button')
-//     newTaskSubmit.textContent = "Add Task"
-//     newTaskSubmit.setAttribute('class', 'btn-submit')
-    
-//     // newTaskSubmit.setAttribute('for', 'name')
-//     newTaskSubmit.setAttribute('type', 'submit')
-//     newTaskSubmit.setAttribute('onclick', 'addNewTask()')
-
-//     const closePopUp = document.createElement('button')
-//     closePopUp.textContent = "Close"
-//     closePopUp.setAttribute('class', 'btn-close-popup')
-//     closePopUp.setAttribute('onclick', 'togglePopUpTaskForm()')
-//     // newTaskSubmit.setAttribute('for', 'name')
-//     // newTaskSubmit.setAttribute('type', 'submit')
-//     newTaskSubmit.setAttribute('onclick', 'togglePopUpTaskForm()')
-    
-    
-    
-    
-//     taskDescInput.setAttribute('class', 'taskDescInput')
-//     taskDueDateInput.setAttribute('class', 'taskDueDateInput')
-
-//     tasksContainer.appendChild(newTaskOverlay)
-//     newTaskOverlay.appendChild(newTaskPopupBox)
-//     newTaskPopupBox.appendChild(newTaskForm)
-//     newTaskForm.appendChild(taskNameLabel)
-//     newTaskForm.appendChild(taskNameInput)
-//     newTaskForm.appendChild(taskDescLabel)
-//     newTaskForm.appendChild(taskDescInput)
-//     newTaskForm.appendChild(taskDueDateLabel)
-//     newTaskForm.appendChild(taskDueDateInput)
-//     newTaskForm.appendChild(taskPriorityLabel)
-//     newTaskForm.appendChild(taskPriorityDataInput)
-//     newTaskForm.appendChild(taskPriorityDatalist)
-//     document.getElementById('priority').appendChild(taskPriorityOptionNone)
-//     document.getElementById('priority').appendChild(taskPriorityOptionLow)
-//     document.getElementById('priority').appendChild(taskPriorityOptionMedium)
-//     document.getElementById('priority').appendChild(taskPriorityOptionHigh)
-//     newTaskForm.appendChild(newTaskSubmit)
-//     newTaskPopupBox.appendChild(closePopUp)
-
-//     return tasksContainer
-
-// }
-
-
-
-
-// function renderProjects() {
-
-// }
 
 function displayTask(element, index) {
     const tasksDisplay = document.getElementById('tasks-display') 
@@ -182,13 +43,6 @@ function displayTask(element, index) {
     myP3.textContent = `${element.priority}`;
     editBtn.src = EditBtn
     deleteBtn.src = TrashCan
-    // deleteBtn.setAttribute("onclick", `deleteTask(${index})`);
-    // editBtn.setAttribute("onclick", `editTask(${index})`);
-
-    
-    // completedCheck.addEventListener('click', function() {
-    //     taskCompleted(index - 1);
-    //     setStorage();
 
     switch (myP3.textContent) {
         case "Low":
@@ -208,13 +62,6 @@ function displayTask(element, index) {
             myP3.classList.add('no-prio')
             break;
         }
-
-
-    //     console.log(projectList)
-    //     console.log(projectList[currentProjectIndex])
-
-    // })
-
 
 
     completedCheck.addEventListener('click', function() {
@@ -242,14 +89,11 @@ function displayTask(element, index) {
         editTask(`${index - 1}`)
         // firing index + 1, not correct so subtracted 1 for workaround ^^^
         editTaskIndex = index - 1
-        console.log(`current task index is ${editTaskIndex}` )
-
-
 
     })
 
+
     deleteBtn.addEventListener('click', function() {
-        // console.log(`delete btn click on task index ${index-1}`)
         let deleteConfirm = confirm('Are you sure you want to delete this task?')
         
         if (deleteConfirm === false) {
@@ -263,7 +107,6 @@ function displayTask(element, index) {
     
     
     myP1.addEventListener('click', () => {
-        // const wasExpanded = taskLi.classList.contains('taskExpand')
 
         if (taskLi.classList.contains('taskExpand')) {
             taskLi.classList.remove('taskExpand')
@@ -278,8 +121,6 @@ function displayTask(element, index) {
         }
     })
     
-
-    // displayArea.appendChild(taskLi)
     tasksDisplay.appendChild(taskLi)
     taskLi.appendChild(completedCheck)
     taskLi.appendChild(myH4)
@@ -291,8 +132,6 @@ function displayTask(element, index) {
     index++
 
 }
-
-
 
 
 var projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [
@@ -338,18 +177,12 @@ let currentProjectIndex = localStorage.currentProjectIndex ? JSON.parse(localSto
 let editTaskIndex
 
 
-// window.currentProjectIndex = currentProjectIndex;
-window.projectTaskList = projectTaskList;
-window.projectList = projectList;
-
-
 const newTaskName = document.getElementById('name')
 const newTaskDescription = document.getElementById('description')
 const newTaskDueDate = document.getElementById('dueDate')
 const newTaskPriority = document.getElementById('priority-choice')
 const newTaskSubmit = document.getElementById('btn-submit')
 
-const editTaskBtn = document.getElementById('editBtn')
 const editTaskName = document.getElementById('edit-name')
 const editTaskDescription = document.getElementById('edit-description')
 const editTaskDueDate = document.getElementById('edit-dueDate')
@@ -360,38 +193,29 @@ const editTaskSubmit = document.getElementById('edit-task-submit')
 const editTaskCloseBtn = document.getElementById('edit-btn-close-popup')
 
 const taskCloseBtn = document.getElementById('btn-close-popup')
-const taskDeleteBtn = document.querySelectorAll('.deleteBtn')
 const newTaskFormContainer = document.getElementById('new-task-form-container')
 const newTaskForm = document.getElementById('new-task-form')
 
 
 const projectListDisplay = document.getElementById('project-list')
-const projectListItem = document.querySelectorAll('li.project-list-item')
 const newProjectName = document.getElementById('new-project') 
 const newProjectSubmit = document.getElementById('new-project-init-input')
 
 const tasksTitle = document.getElementById('tasks-title')
 const titleEditIcon = document.getElementById('title-edit-icon')
-const tasksTitleCombo = document.getElementById('task-title-icon-combo')
 const tasksDisplay = document.getElementById('tasks-display') 
 const addTaskBtn = document.getElementById('add-task')
-const ul = document.createElement('ul')
+
 
 function setStorage() {
     localStorage.setItem("userProjectList", JSON.stringify(projectList));
     localStorage.setItem("currentProjectIndex", JSON.stringify(currentProjectIndex))
-    console.log('set storage was fired')
 }
 
-// function setUserProject() {
-//     projectList = localStorage.getItem("userProjectList")
-//     return projectList
-// }
 
 
 function renderProjectList() {
     let i = 0;
-    console.log("current render project list index is " + projectList[currentProjectIndex])
     
     if (projectList && projectList.length) {
         projectListDisplay.innerHTML = '';
@@ -404,13 +228,9 @@ function renderProjectList() {
             p.setAttribute('class', 'project-list-item')
             p.setAttribute('id', `${i}`)
             p.textContent = element.name;
-            // const num = document.querySelectorAll('#id')
     
-            //try to move this out of here into separate function
             p.addEventListener('click', function() {
                 currentProjectIndex = p.id
-                console.log(`current project index is ${currentProjectIndex}`)
-                // projectIndex = p.id
                 renderProjectTasks(p.id)
                 setStorage();
             })
@@ -434,16 +254,13 @@ function renderProjectList() {
     
             i++
         })
-    } else {
-        console.log("start a new project")
-    }
+    } 
 
 }
 
 
 
 function renderProjectTasks(index) {
-    console.log(currentProjectIndex)
 
     if (projectList[currentProjectIndex] !== undefined) {
         let taskI = 0;
@@ -486,10 +303,6 @@ function renderProjectTasks(index) {
     }
 }
 
-// function taskCompleted(index) {
-//     projectList[currentProjectIndex].tasks[index].changeCompleted()
-// }
-
 function taskCompleted(index) {
     projectList[currentProjectIndex].tasks[index].changeCompleted()
     projectList[currentProjectIndex].completedTasks.push(projectList[currentProjectIndex].tasks[index])
@@ -497,8 +310,6 @@ function taskCompleted(index) {
     projectList[currentProjectIndex].tasks.splice(index, 1)
     setStorage();
     
-    console.log(projectList)
-    console.log(projectList[currentProjectIndex])
     tasksDisplay.innerHTML = '';
     renderProjectTasks(currentProjectIndex)
 }
@@ -510,8 +321,6 @@ function taskRestored(index) {
     projectList[currentProjectIndex].completedTasks.splice(index, 1)
     setStorage();
 
-    console.log(projectList)
-    console.log(projectList[currentProjectIndex])
     tasksDisplay.innerHTML = '';
     renderProjectTasks(currentProjectIndex)
 }
@@ -519,7 +328,6 @@ function taskRestored(index) {
 
 
 function editTask(task) {
-    console.log(`edit task function firing ${task}`)
 
     editTaskName.value = `${projectList[currentProjectIndex].tasks[task].title}`
     editTaskDescription.value = `${projectList[currentProjectIndex].tasks[task].description}`
@@ -538,15 +346,10 @@ function deleteTask(index) {
 }
 
 function deleteProject(index) {
-    console.log(`the project "` + projectList[index].name + `" was removed`)
     projectList.splice(index, 1)
     projectListDisplay.innerHTML = ''
-    // currentProjectIndex = index - 1
-    // renderProjectTasks(index - 1)
     
     renderProjectList()
-    // renderProjectTasks(currentProjectIndex);
-    
     setStorage();
 }
 
@@ -557,21 +360,9 @@ function deleteProject(index) {
 
 
 function DomController() {
-    // if (!localStorage.getItem("userProjectList")) {
-        //     projectList = []
-    // } else {
-        //     setUserProject();
-    // }
 
-    
-    
-   
-
-    let currentTaskList = projectTaskList
-    
     
     newProjectSubmit.addEventListener('click', function() {
-        console.log('New Project Submit Button Works')
         let newProj = new Project(newProjectName.value.toString())
         
         if (newProj.name === "" ) {
@@ -581,13 +372,11 @@ function DomController() {
 
 
         projectList.push(newProj)
-        console.log(projectList)
         
         projectListDisplay.innerHTML = ''
         
         setStorage();
         renderProjectList();
-        // renderProjectTasks();
     })
     
     
@@ -606,7 +395,6 @@ function DomController() {
                                                 newTaskDescription.value, 
                                                 newTaskDueDate.value, 
                                                 newTaskPriority.value)
-        console.log(projectList[currentProjectIndex].tasks)
         tasksDisplay.innerHTML = '';
             
         renderProjectTasks(currentProjectIndex)
@@ -619,6 +407,7 @@ function DomController() {
         setStorage();
     })
     
+
     addTaskBtn.addEventListener('click', function() {
         newTaskFormContainer.classList.add('new-task-form-container-show')
         newTaskFormContainer.classList.remove('new-task-form-container')
@@ -629,7 +418,6 @@ function DomController() {
     })
     
     taskCloseBtn.addEventListener('click', function() {
-        console.log('close button works!')
         newTaskForm.classList.add('no-form-display')
         newTaskForm.classList.remove('form-display')
         newTaskFormContainer.classList.remove('new-task-form-container-show')
@@ -638,14 +426,15 @@ function DomController() {
     })
     
     titleEditIcon.addEventListener('click', function() {
-        console.log('project title click')
         let newProjName = prompt('rename your project', projectList[currentProjectIndex].name)
+        
         if (newProjName === null) {
             return
         } else {
             projectList[currentProjectIndex].changeProjectName(newProjName)
 
         }
+        
         setStorage();
         renderProjectTasks(currentProjectIndex);
         renderProjectList();
@@ -685,27 +474,6 @@ function DomController() {
         editTaskForm.classList.remove('form-display')
         
     })
-
-
-    // projectList[index].tasks.forEach((task) => {
-    //     const taskLi = task.querySelector('.task')
-
-    //     task.addEventListener('click', (event) => {
-    //         const wasActive = task.classList.contains('active')
-            
-    //         projectList[index].tasks.forEach((task) => {
-    //             task.classList.remove('active');
-    //         })
-    //         if (!wasActive) {
-    //             task.classList.add('active')
-    //         }
-            
-    //     })
-
-    // })
-        
-    
-    
 
 
     function newTask(title, description, dueDate, priority) {
@@ -765,18 +533,11 @@ function DomController() {
         })
     }
 
-    
-    console.log(projectList)
-    console.log(projectList[currentProjectIndex])
         
     renderProjectList();
     renderProjectTasks(currentProjectIndex);
-    // setStorage()
     
-    // console.projectsController();
-    // console.tasksController();
-    
-    return { projectList, projectTaskList, currentTaskList, currentProjectIndex }
+    return { projectList, projectTaskList, currentProjectIndex }
 }
 
 export { DomController }

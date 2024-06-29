@@ -1,8 +1,5 @@
 import { Task } from './task.js'
 
-console.log('test Project')
-
-
 export class Project {
     constructor(name) {
         this.name = name;
@@ -20,13 +17,6 @@ export class Project {
     changeProjectName(newName) {
         this.name = newName;
     }
-
-    getTasks() {
-        return this.tasks;
-        
-    }
-
-    
 
 }
 

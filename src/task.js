@@ -1,6 +1,3 @@
-console.log('test To Do');
-
-
 export class Task {
     constructor(title, description, dueDate, priority) {
         this.title = title;

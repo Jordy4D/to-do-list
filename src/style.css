@@ -364,10 +364,6 @@ input[type="checkbox"] {
     cursor: default;
 }
 
-.task-legend .task-dueDate {
-    /* justify-self: center; */
-}
-
 .task-legend .task-priority {
     justify-self: center;
 }
