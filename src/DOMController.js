@@ -15,128 +15,128 @@ Object.assign(global, tasksController)
 
 //pop up form for new task
 
-function taskPopUpForm() {
-    const tasksContainer = document.getElementById('tasks-container')
-    const newTaskOverlay = document.createElement('div')
-    const newTaskPopupBox = document.createElement('div')
-    const newTaskForm = document.createElement('form')
-    newTaskOverlay.setAttribute('id', 'newTaskOverlay')
-    newTaskOverlay.setAttribute('class', 'newTaskOverlay-container')
-    newTaskPopupBox.setAttribute('class', 'newTaskPopupBox')
-    newTaskForm.setAttribute('class', 'newTaskForm')
+// function taskPopUpForm() {
+//     const tasksContainer = document.getElementById('tasks-container')
+//     const newTaskOverlay = document.createElement('div')
+//     const newTaskPopupBox = document.createElement('div')
+//     const newTaskForm = document.createElement('form')
+//     newTaskOverlay.setAttribute('id', 'newTaskOverlay')
+//     newTaskOverlay.setAttribute('class', 'newTaskOverlay-container')
+//     newTaskPopupBox.setAttribute('class', 'newTaskPopupBox')
+//     newTaskForm.setAttribute('class', 'newTaskForm')
 
 
 
 
 
-    const taskNameInput = document.createElement('input')
-    taskNameInput.setAttribute('class', 'form-input')
-    taskNameInput.setAttribute('type', 'text')
-    taskNameInput.setAttribute('placeholder', 'Task Name')
-    taskNameInput.setAttribute('id', 'name')
-    taskNameInput.setAttribute('name', 'name')
-    taskNameInput.required = true;
+//     const taskNameInput = document.createElement('input')
+//     taskNameInput.setAttribute('class', 'form-input')
+//     taskNameInput.setAttribute('type', 'text')
+//     taskNameInput.setAttribute('placeholder', 'Task Name')
+//     taskNameInput.setAttribute('id', 'name')
+//     taskNameInput.setAttribute('name', 'name')
+//     taskNameInput.required = true;
 
-    const taskDescInput = document.createElement('input')
-    taskDescInput.setAttribute('class', 'form-input')
-    taskDescInput.setAttribute('type', 'text')
-    taskDescInput.setAttribute('placeholder', 'Task Description')
-    taskDescInput.setAttribute('id', 'description')
-    taskDescInput.setAttribute('name', 'description')
-    taskDescInput.required = true;
+//     const taskDescInput = document.createElement('input')
+//     taskDescInput.setAttribute('class', 'form-input')
+//     taskDescInput.setAttribute('type', 'text')
+//     taskDescInput.setAttribute('placeholder', 'Task Description')
+//     taskDescInput.setAttribute('id', 'description')
+//     taskDescInput.setAttribute('name', 'description')
+//     taskDescInput.required = true;
     
-    const taskDueDateInput = document.createElement('input')
-    taskDueDateInput.setAttribute('class', 'form-input')
-    taskDueDateInput.setAttribute('type', 'date')
-    taskDueDateInput.setAttribute('placeholder', 'Due Date')
-    taskDueDateInput.setAttribute('id', 'dueDate')
-    taskDueDateInput.setAttribute('name', 'dueDate')
-    taskDueDateInput.required = true;
+//     const taskDueDateInput = document.createElement('input')
+//     taskDueDateInput.setAttribute('class', 'form-input')
+//     taskDueDateInput.setAttribute('type', 'date')
+//     taskDueDateInput.setAttribute('placeholder', 'Due Date')
+//     taskDueDateInput.setAttribute('id', 'dueDate')
+//     taskDueDateInput.setAttribute('name', 'dueDate')
+//     taskDueDateInput.required = true;
     
-    const taskPriorityDataInput = document.createElement('input') 
-    taskPriorityDataInput.setAttribute('list', 'priority')
+//     const taskPriorityDataInput = document.createElement('input') 
+//     taskPriorityDataInput.setAttribute('list', 'priority')
 
-    const taskPriorityDatalist = document.createElement('datalist')
-    taskPriorityDatalist.setAttribute('class', 'form-input')
-    taskPriorityDatalist.setAttribute('placeholder', 'Priority')
-    taskPriorityDatalist.setAttribute('id', 'priority')
-    taskPriorityDatalist.setAttribute('name', 'priority')
+//     const taskPriorityDatalist = document.createElement('datalist')
+//     taskPriorityDatalist.setAttribute('class', 'form-input')
+//     taskPriorityDatalist.setAttribute('placeholder', 'Priority')
+//     taskPriorityDatalist.setAttribute('id', 'priority')
+//     taskPriorityDatalist.setAttribute('name', 'priority')
 
-    const taskPriorityOptionNone = document.createElement('option')
-    taskPriorityOptionNone.value = 'None'
-    const taskPriorityOptionLow = document.createElement('option')
-    taskPriorityOptionLow.value = 'Low'
-    const taskPriorityOptionMedium = document.createElement('option')
-    taskPriorityOptionMedium.value = 'Medium'
-    const taskPriorityOptionHigh = document.createElement('option')
-    taskPriorityOptionHigh.value = 'High'  
+//     const taskPriorityOptionNone = document.createElement('option')
+//     taskPriorityOptionNone.value = 'None'
+//     const taskPriorityOptionLow = document.createElement('option')
+//     taskPriorityOptionLow.value = 'Low'
+//     const taskPriorityOptionMedium = document.createElement('option')
+//     taskPriorityOptionMedium.value = 'Medium'
+//     const taskPriorityOptionHigh = document.createElement('option')
+//     taskPriorityOptionHigh.value = 'High'  
     
 
     
-    const taskNameLabel = document.createElement('label')
-    taskNameLabel.textContent = "Task Name"
-    taskNameLabel.setAttribute('class', 'form-label')
-    taskNameLabel.setAttribute('for', 'name')
+//     const taskNameLabel = document.createElement('label')
+//     taskNameLabel.textContent = "Task Name"
+//     taskNameLabel.setAttribute('class', 'form-label')
+//     taskNameLabel.setAttribute('for', 'name')
     
-    const taskDescLabel = document.createElement('label')
-    taskDescLabel.textContent = "Description"
-    taskDescLabel.setAttribute('class', 'form-label')
-    taskDescLabel.setAttribute('for', 'description')
+//     const taskDescLabel = document.createElement('label')
+//     taskDescLabel.textContent = "Description"
+//     taskDescLabel.setAttribute('class', 'form-label')
+//     taskDescLabel.setAttribute('for', 'description')
     
-    const taskDueDateLabel = document.createElement('label')
-    taskDueDateLabel.textContent = "Due Date"
-    taskDueDateLabel.setAttribute('class', 'form-label')
-    taskDueDateLabel.setAttribute('for', 'dueDate')
+//     const taskDueDateLabel = document.createElement('label')
+//     taskDueDateLabel.textContent = "Due Date"
+//     taskDueDateLabel.setAttribute('class', 'form-label')
+//     taskDueDateLabel.setAttribute('for', 'dueDate')
     
-    const taskPriorityLabel = document.createElement('label')
-    taskPriorityLabel.textContent = "Priority"
-    taskPriorityLabel.setAttribute('class', 'form-label')
-    taskPriorityLabel.setAttribute('for', 'priority')    
+//     const taskPriorityLabel = document.createElement('label')
+//     taskPriorityLabel.textContent = "Priority"
+//     taskPriorityLabel.setAttribute('class', 'form-label')
+//     taskPriorityLabel.setAttribute('for', 'priority')    
    
-    const newTaskSubmit = document.createElement('button')
-    newTaskSubmit.textContent = "Add Task"
-    newTaskSubmit.setAttribute('class', 'btn-submit')
+//     const newTaskSubmit = document.createElement('button')
+//     newTaskSubmit.textContent = "Add Task"
+//     newTaskSubmit.setAttribute('class', 'btn-submit')
     
-    // newTaskSubmit.setAttribute('for', 'name')
-    newTaskSubmit.setAttribute('type', 'submit')
-    newTaskSubmit.setAttribute('onclick', 'addNewTask()')
+//     // newTaskSubmit.setAttribute('for', 'name')
+//     newTaskSubmit.setAttribute('type', 'submit')
+//     newTaskSubmit.setAttribute('onclick', 'addNewTask()')
 
-    const closePopUp = document.createElement('button')
-    closePopUp.textContent = "Close"
-    closePopUp.setAttribute('class', 'btn-close-popup')
-    closePopUp.setAttribute('onclick', 'togglePopUpTaskForm()')
-    // newTaskSubmit.setAttribute('for', 'name')
-    // newTaskSubmit.setAttribute('type', 'submit')
-    newTaskSubmit.setAttribute('onclick', 'togglePopUpTaskForm()')
+//     const closePopUp = document.createElement('button')
+//     closePopUp.textContent = "Close"
+//     closePopUp.setAttribute('class', 'btn-close-popup')
+//     closePopUp.setAttribute('onclick', 'togglePopUpTaskForm()')
+//     // newTaskSubmit.setAttribute('for', 'name')
+//     // newTaskSubmit.setAttribute('type', 'submit')
+//     newTaskSubmit.setAttribute('onclick', 'togglePopUpTaskForm()')
     
     
     
     
-    taskDescInput.setAttribute('class', 'taskDescInput')
-    taskDueDateInput.setAttribute('class', 'taskDueDateInput')
+//     taskDescInput.setAttribute('class', 'taskDescInput')
+//     taskDueDateInput.setAttribute('class', 'taskDueDateInput')
 
-    tasksContainer.appendChild(newTaskOverlay)
-    newTaskOverlay.appendChild(newTaskPopupBox)
-    newTaskPopupBox.appendChild(newTaskForm)
-    newTaskForm.appendChild(taskNameLabel)
-    newTaskForm.appendChild(taskNameInput)
-    newTaskForm.appendChild(taskDescLabel)
-    newTaskForm.appendChild(taskDescInput)
-    newTaskForm.appendChild(taskDueDateLabel)
-    newTaskForm.appendChild(taskDueDateInput)
-    newTaskForm.appendChild(taskPriorityLabel)
-    newTaskForm.appendChild(taskPriorityDataInput)
-    newTaskForm.appendChild(taskPriorityDatalist)
-    document.getElementById('priority').appendChild(taskPriorityOptionNone)
-    document.getElementById('priority').appendChild(taskPriorityOptionLow)
-    document.getElementById('priority').appendChild(taskPriorityOptionMedium)
-    document.getElementById('priority').appendChild(taskPriorityOptionHigh)
-    newTaskForm.appendChild(newTaskSubmit)
-    newTaskPopupBox.appendChild(closePopUp)
+//     tasksContainer.appendChild(newTaskOverlay)
+//     newTaskOverlay.appendChild(newTaskPopupBox)
+//     newTaskPopupBox.appendChild(newTaskForm)
+//     newTaskForm.appendChild(taskNameLabel)
+//     newTaskForm.appendChild(taskNameInput)
+//     newTaskForm.appendChild(taskDescLabel)
+//     newTaskForm.appendChild(taskDescInput)
+//     newTaskForm.appendChild(taskDueDateLabel)
+//     newTaskForm.appendChild(taskDueDateInput)
+//     newTaskForm.appendChild(taskPriorityLabel)
+//     newTaskForm.appendChild(taskPriorityDataInput)
+//     newTaskForm.appendChild(taskPriorityDatalist)
+//     document.getElementById('priority').appendChild(taskPriorityOptionNone)
+//     document.getElementById('priority').appendChild(taskPriorityOptionLow)
+//     document.getElementById('priority').appendChild(taskPriorityOptionMedium)
+//     document.getElementById('priority').appendChild(taskPriorityOptionHigh)
+//     newTaskForm.appendChild(newTaskSubmit)
+//     newTaskPopupBox.appendChild(closePopUp)
 
-    return tasksContainer
+//     return tasksContainer
 
-}
+// }
 
 
 
@@ -161,7 +161,10 @@ function displayTask(element, index) {
     completedCheck.setAttribute('type', 'checkbox')
     completedCheck.setAttribute('class', "completedCheck")
     myH4.classList.add("task-name")
+    myH4.classList.add("name-hide")
     myP1.classList.add("task-description")
+    myP1.classList.add('description-hide')
+
     myP2.classList.add("task-dueDate")
     myP3.classList.add("task-priority")
     editBtn.classList.add('editBtn')
@@ -175,7 +178,7 @@ function displayTask(element, index) {
     }
     myH4.textContent = `${element.title}`;
     myP1.textContent = `${element.description}`;
-    myP2.textContent = `Due: ${element.dueDate}`;
+    myP2.textContent = `${element.dueDate}`;
     myP3.textContent = `${element.priority}`;
     editBtn.src = EditBtn
     deleteBtn.src = TrashCan
@@ -186,6 +189,25 @@ function displayTask(element, index) {
     // completedCheck.addEventListener('click', function() {
     //     taskCompleted(index - 1);
     //     setStorage();
+
+    switch (myP3.textContent) {
+        case "Low":
+            myP3.setAttribute("class", "task-priority")
+            myP3.classList.add('low-prio')
+            break;
+        case "Medium":
+            myP3.setAttribute("class", "task-priority")
+            myP3.classList.add('med-prio')
+            break;
+        case "High":
+            myP3.setAttribute("class", "task-priority")
+            myP3.classList.add('high-prio')
+            break;
+        case "None":
+            myP3.setAttribute("class", "task-priority")
+            myP3.classList.add('no-prio')
+            break;
+        }
 
 
     //     console.log(projectList)
@@ -245,8 +267,14 @@ function displayTask(element, index) {
 
         if (taskLi.classList.contains('taskExpand')) {
             taskLi.classList.remove('taskExpand')
+            myP1.classList.add('description-hide')
+            myH4.classList.add("name-hide")
+
         } else {
             taskLi.classList.add('taskExpand')
+            myP1.classList.remove('description-hide')
+            myH4.classList.remove("name-hide")
+            
         }
     })
     
@@ -267,50 +295,40 @@ function displayTask(element, index) {
 
 
 
-
-// const testProj1 = new Project("Home Chores")
-// testProj1.newTask("Mow", "Mow the front yard", "6/13/24", "Medium")
-// testProj1.newTask("Mow Again", "Mow the back yard", "6/14/24", "Medium")
-// testProj1.newTask("Groceries", "Get this week's groceries", "6/20/24", "High")
-// projectList.push(testProj1)
-
-// const testProj2 = new Project("Fun Chores")
-// testProj2.newTask("Fart", "Make her day special", "7/13/25", "High")
-// testProj2.newTask("Walk the Dog", "Bitch needs to calm down", "8/14/24", "None")
-// testProj2.newTask("Code", "Finish this damn To Do List", "7/20/24", "Low")
-// projectList.push(testProj2)
-
-
-
-
-
 var projectList = localStorage.userProjectList ? JSON.parse(localStorage.userProjectList) : [
     {
-        name: "Home Chores",
-        dataName: "home chores",
+        name: "Example Project",
+        dataName: "example project",
         tasks: [
             {
-                title: "Mow",
-                description: "Mow the front yard",
+                title: "Low Priority Task",
+                description: "An example low-priority task",
                 dueDate: "2024-06-25",
-                priority: "Medium",
+                priority: "Low",
                 complete: false
             },
             {
-                title: "Mow Again",
-                description: "Mow the back yard",
+                title: "Medium Priority Task",
+                description: "An example medium-priority task",
                 dueDate: "2024-06-26",
                 priority: "Medium",
                 complete: false
 
             },
             {
-                title: "Groceries",
-                description: "Get this week's groceries",
+                title: "High Priority Task Example To Showcase Overflow",
+                description: "This is an example of a high-priority task and also one that shows an overflow example for the name and description",
                 dueDate: "2024-06-28",
                 priority: "High",
                 complete: false
             },
+            {
+                title: "No Priority Task",
+                description: "A task that has no priority",
+                dueDate: "2024-06-28",
+                priority: "None",
+                complete: false
+            }
         ],
         completedTasks: []
     }
@@ -403,8 +421,9 @@ function renderProjectList() {
                 if (deleteConfirm === false) {
                     return
                 } else {
+                    let deleteIndex = currentProjectIndex - 1
                     deleteProject(pDeleteBtn.id)
-                    // renderProjectList()
+                    renderProjectTasks(deleteIndex)
                 }
                 
                 
@@ -458,7 +477,7 @@ function renderProjectTasks(index) {
         tasksTitle.innerHTML = '';
         tasksDisplay.innerHTML = '';
         currentProjectIndex = 0;
-        tasksTitle.innerHTML = 'Start a New Project To Add To Do Items';
+        tasksTitle.innerHTML = 'Choose a Project or Start a New Project';
         titleEditIcon.classList.add('no-display')
         addTaskBtn.classList.add('no-display')
         tasksTitle.classList.add('noClick')
@@ -523,14 +542,12 @@ function deleteProject(index) {
     projectList.splice(index, 1)
     projectListDisplay.innerHTML = ''
     // currentProjectIndex = index - 1
-    setStorage();
     // renderProjectTasks(index - 1)
-
-
-    renderProjectTasks(currentProjectIndex);
+    
     renderProjectList()
-
-    // console.log("current project list index is " + `${currentProjectIndex}`)
+    // renderProjectTasks(currentProjectIndex);
+    
+    setStorage();
 }
 
 
